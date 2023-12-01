@@ -17,7 +17,7 @@ class GUI:
 		self.Window.title("DB Search")
 		self.Window.resizable(width = False,
 							height = False)
-		self.Window.configure(width = 800,
+		self.Window.configure(width = 1400,
 							height = 600)
 		# create a Label
 		self.pls = Label(self.Window,
@@ -33,7 +33,7 @@ class GUI:
 							font = "Helvetica 12")
 		
 		self.labelInput.place(relheight = 0.05,
-							relx = 0.2,
+							relx = 0.04,
 							rely = 0.15)
 		
 		# create a entry box for
@@ -41,30 +41,229 @@ class GUI:
 		self.InputText = Entry(self.Window,
 							font = "Helvetica 14")
 		
-		self.InputText.place(relwidth = 0.4,
+		self.InputText.place(relwidth = 0.1,
 							relheight = 0.05,
-							relx = 0.3,
+							relx = 0.07,
+							rely = 0.15)
+
+		# create a Label
+		self.labelInput1 = Label(self.Window,
+							text = "Dev name: ",
+							font = "Helvetica 12")
+		
+		self.labelInput1.place(relheight = 0.05,
+							relx = 0.17,
+							rely = 0.15)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText1 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText1.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.22,
+							rely = 0.15)
+
+		# create a Label
+		self.labelInput2 = Label(self.Window,
+							text = "Genre name: ",
+							font = "Helvetica 12")
+		
+		self.labelInput2.place(relheight = 0.05,
+							relx = 0.32,
+							rely = 0.15)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText2 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText2.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.38,
 							rely = 0.15)
 
 
 		# create a Label
-		self.labelcombo = Label(self.Window,
-							text = "Search by: ",
+		self.labelInput3 = Label(self.Window,
+							text = "Store name: ",
 							font = "Helvetica 12")
+		
+		self.labelInput3.place(relheight = 0.05,
+							relx = 0.48,
+							rely = 0.15)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText3 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText3.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.54,
+							rely = 0.15)
 
-		self.labelcombo.place(relheight = 0.05,
-							relx = 0.2,
+
+		# create a Label
+		self.labelInput4 = Label(self.Window,
+							text = "Platform name: ",
+							font = "Helvetica 12")
+		
+		self.labelInput4.place(relheight = 0.05,
+							relx = 0.64,
+							rely = 0.15)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText4 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText4.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.71,
+							rely = 0.15)
+
+
+		# create a Label
+		self.labelInput5 = Label(self.Window,
+							text = "Game title: ",
+							font = "Helvetica 12")
+		
+		self.labelInput5.place(relheight = 0.05,
+							relx = 0.81,
+							rely = 0.15)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText5 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText5.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.86,
+							rely = 0.15)
+
+
+		# create a Label
+		self.labelInput6 = Label(self.Window,
+							text = "Playtime: ",
+							font = "Helvetica 12")
+		
+		self.labelInput6.place(relheight = 0.05,
+							relx = 0.04,
+							rely = 0.2)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText6 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText6.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.08,
 							rely = 0.2)
 
-		self.combo = ttk.Combobox(self.Window,
-			state="readonly",
-			values=["Developer name", "Genre name", "Store name", "Platform name", "Game title", "Playtime", "System family", "ESRB rating", "Metacritic rating", "User rating", "Release date"]
-		)
 
-		self.combo.place(relwidth = 0.4,
-                                                        relheight = 0.05,
-                                                        relx = 0.3,
-                                                        rely = 0.2)
+		# create a Label
+		self.labelInput7 = Label(self.Window,
+							text = "System family: ",
+							font = "Helvetica 12")
+		
+		self.labelInput7.place(relheight = 0.05,
+							relx = 0.18,
+							rely = 0.2)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText7 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText7.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.24,
+							rely = 0.2)
+
+
+		# create a Label
+		self.labelInput8 = Label(self.Window,
+							text = "ESRB rating: ",
+							font = "Helvetica 12")
+		
+		self.labelInput8.place(relheight = 0.05,
+							relx = 0.34,
+							rely = 0.2)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText8 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText8.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.39,
+							rely = 0.2)
+
+
+		# create a Label
+		self.labelInput9 = Label(self.Window,
+							text = "Metacritic rating: ",
+							font = "Helvetica 12")
+		
+		self.labelInput9.place(relheight = 0.05,
+							relx = 0.49,
+							rely = 0.2)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText9 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText9.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.56,
+							rely = 0.2)
+
+
+		# create a Label
+		self.labelInput10 = Label(self.Window,
+							text = "User rating: ",
+							font = "Helvetica 12")
+		
+		self.labelInput10.place(relheight = 0.05,
+							relx = 0.66,
+							rely = 0.2)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText10 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText10.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.71,
+							rely = 0.2)
+
+
+		# create a Label
+		self.labelInput11 = Label(self.Window,
+							text = "Release date: ",
+							font = "Helvetica 12")
+		
+		self.labelInput11.place(relheight = 0.05,
+							relx = 0.81,
+							rely = 0.2)
+		
+		# create a entry box for
+		# typing the input
+		self.InputText11 = Entry(self.Window,
+							font = "Helvetica 14")
+		
+		self.InputText11.place(relwidth = 0.1,
+							relheight = 0.05,
+							relx = 0.87,
+							rely = 0.2)
+
 		# create a Label
 		self.labelcombo2 = Label(self.Window,
 							text = "Update Method: ",
@@ -93,7 +292,7 @@ class GUI:
 		self.go = Button(self.Window,
 						text = "SEARCH",
 						font = "Helvetica 14 bold",
-						command = lambda: self.goAhead(self.InputText.get(), self.combo.get()))
+						command = lambda: self.goAhead(self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 		
 		self.go.place(relx = 0.1,
 					rely = 0.3)
@@ -189,13 +388,16 @@ class GUI:
 		scrollbar.config(command = self.results.yview)
 		scrollbar2.config(command = self.wishlist.yview)
 
+		self.results.config(state = DISABLED)
+		self.wishlist.config(state = DISABLED)
+
 		self.Window.mainloop()
 
 	def callback1(self, event):
-		self.goAhead(self.InputText.get(), self.combo.get())
+		self.goAhead(self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get())
 
 
-	# def goAhead(self, input, searchby):
+	# def goAhead(self, devname, genname, stoname, platname, gamtitl, palytime, systmfamily, esrbrate, metacritrate, userrate, reldate):
         # the stuff to do when searching
 
 	# def loadWishlst(self, input):
