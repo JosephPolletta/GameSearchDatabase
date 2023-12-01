@@ -3,12 +3,70 @@ from tkinter import *
 from tkinter import font
 from tkinter import ttk
 
+import os
+import mysql.connector
+import json
+
+"""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting up Database Connection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Change this to your directory
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+path_to_games = "C:/Users/Nick/Desktop/Python/Project/gamedata/"
+
+with open("connectorConfig.json", "r") as f:
+    config = json.load(f)
+connection_config = config["mysql"]
+data_base = mysql.connector.connect(**connection_config)
+
+# Preparing a cursor object to use throughout app
+cursor_object = data_base.cursor()
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Opening Wishlist/Creating it if it doesn't exist or is empty
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+try: 
+	with open('wishlist.json', 'r') as file:
+		# Reading from json file
+		# Opened Wishlist
+		wishlist = json.load(file)
+except:
+    with open('wishlist.json', 'w') as file:
+        print("Created Wishlist")
+
+
+# Loads the first 100 rows of the game table for users to look at and populates the wishlist if there is anything already in it upon startup
+def initialize():
+	initial_statement = """
+						select title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating, name AS Developer, genre
+						from game g join gamedeveloper gd on g.game_id = gd.game_id
+							join developer d on d.developer_id = gd.developer_id
+							join gamegenre gg on g.game_id = gg.game_id
+							join genre gen on gg.genre_id = gen.genre_id
+ 						limit 100
+       					"""
+	cursor_object.execute(initial_statement)
+	initial_list = cursor_object.fetchall()
+	print(initial_list)
+	return
+
+"""
+~~~~~~~~~~~~~~
+Setting up App
+~~~~~~~~~~~~~~
+"""
 
 # GUI class for the db app
 class GUI:
 	# constructor method
 	def __init__(self):
-	
+		
 		# window which is currently hidden
 		self.Window = Tk()
 		self.Window.withdraw()
@@ -396,18 +454,27 @@ class GUI:
 	def callback1(self, event):
 		self.goAhead(self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get())
 
+ 
+	# Function for searching
+	def goAhead(self, devname, genname, stoname, platname, gamtitl, palytime, systmfamily, esrbrate, metacritrate, userrate, reldate):
+		search_statement = ""
+		return
+    
+	# Function for loading a wishlist (Not sure what the point of this is, it should autoload no?)
+	def loadWishlist(self, input):
+		print("Loaded")
+		return
 
-	# def goAhead(self, devname, genname, stoname, platname, gamtitl, palytime, systmfamily, esrbrate, metacritrate, userrate, reldate):
-        # the stuff to do when searching
+	# Function for adding an entry to a wishlist
+	def addToWishlist(self, input):
+		return
+	
+ 	# Empty update function
+	def update(self, input, umethod):
+		return
 
-	# def loadWishlst(self, input):
-	# the stuff to do when loading a wishlist
+initialize()
 
-	# def addToWishlist(self, input):
-	# the stuff to do adding an entry to the wishlist
-
-	# def update(self, input, umethod):
-	# the stuff to do when performing updates
 
 # create a GUI class object
 g = GUI()
