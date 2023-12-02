@@ -27,24 +27,6 @@ class GUI:
 		
 		self.pls.place(relheight = 0.15, relx = 0.3,
 					rely = 0.01)
-		# create a Label
-		self.labelInput = Label(self.Window,
-							text = "Input: ",
-							font = "Helvetica 12")
-		
-		self.labelInput.place(relheight = 0.05,
-							relx = 0.04,
-							rely = 0.15)
-		
-		# create a entry box for
-		# typing the input
-		self.InputText = Entry(self.Window,
-							font = "Helvetica 14")
-		
-		self.InputText.place(relwidth = 0.1,
-							relheight = 0.05,
-							relx = 0.07,
-							rely = 0.15)
 
 		# create a Label
 		self.labelInput1 = Label(self.Window,
@@ -52,7 +34,7 @@ class GUI:
 							font = "Helvetica 12")
 		
 		self.labelInput1.place(relheight = 0.05,
-							relx = 0.17,
+							relx = 0.07,
 							rely = 0.15)
 		
 		# create a entry box for
@@ -62,7 +44,7 @@ class GUI:
 		
 		self.InputText1.place(relwidth = 0.1,
 							relheight = 0.05,
-							relx = 0.22,
+							relx = 0.12,
 							rely = 0.15)
 
 		# create a Label
@@ -71,7 +53,7 @@ class GUI:
 							font = "Helvetica 12")
 		
 		self.labelInput2.place(relheight = 0.05,
-							relx = 0.32,
+							relx = 0.22,
 							rely = 0.15)
 		
 		# create a entry box for
@@ -81,7 +63,7 @@ class GUI:
 		
 		self.InputText2.place(relwidth = 0.1,
 							relheight = 0.05,
-							relx = 0.38,
+							relx = 0.28,
 							rely = 0.15)
 
 
@@ -91,7 +73,7 @@ class GUI:
 							font = "Helvetica 12")
 		
 		self.labelInput3.place(relheight = 0.05,
-							relx = 0.48,
+							relx = 0.38,
 							rely = 0.15)
 		
 		# create a entry box for
@@ -101,7 +83,7 @@ class GUI:
 		
 		self.InputText3.place(relwidth = 0.1,
 							relheight = 0.05,
-							relx = 0.54,
+							relx = 0.44,
 							rely = 0.15)
 
 
@@ -111,7 +93,7 @@ class GUI:
 							font = "Helvetica 12")
 		
 		self.labelInput4.place(relheight = 0.05,
-							relx = 0.64,
+							relx = 0.54,
 							rely = 0.15)
 		
 		# create a entry box for
@@ -121,7 +103,7 @@ class GUI:
 		
 		self.InputText4.place(relwidth = 0.1,
 							relheight = 0.05,
-							relx = 0.71,
+							relx = 0.61,
 							rely = 0.15)
 
 
@@ -131,7 +113,7 @@ class GUI:
 							font = "Helvetica 12")
 		
 		self.labelInput5.place(relheight = 0.05,
-							relx = 0.81,
+							relx = 0.71,
 							rely = 0.15)
 		
 		# create a entry box for
@@ -141,7 +123,7 @@ class GUI:
 		
 		self.InputText5.place(relwidth = 0.1,
 							relheight = 0.05,
-							relx = 0.86,
+							relx = 0.76,
 							rely = 0.15)
 
 
@@ -285,7 +267,7 @@ class GUI:
 
 
 		# set the focus of the cursor
-		self.InputText.focus()
+		self.InputText1.focus()
 		
 		# create a Search Button
 		# along with action
@@ -294,16 +276,7 @@ class GUI:
 						font = "Helvetica 14 bold",
 						command = lambda: self.goAhead(self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 		
-		self.go.place(relx = 0.1,
-					rely = 0.3)
-		# create a Search Button
-		# along with action
-		self.loadw = Button(self.Window,
-						text = "Load Wishlist",
-						font = "Helvetica 14 bold",
-						command = lambda: self.loadWishlist(self.InputText.get()))
-
-		self.loadw.place(relx = 0.25,
+		self.go.place(relx = 0.2,
 					rely = 0.3)
 
 
@@ -312,9 +285,9 @@ class GUI:
 		self.addw = Button(self.Window,
 						text = "Add to wishlist",
 						font = "Helvetica 14 bold",
-						command = lambda: self.addToWishlist(self.InputText.get()))
+						command = lambda: self.addToWishlist(self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 
-		self.addw.place(relx = 0.45,
+		self.addw.place(relx = 0.35,
 					rely = 0.3)
 
 		# create a Search Button
@@ -322,12 +295,12 @@ class GUI:
 		self.updateb = Button(self.Window,
 						text = "Update",
 						font = "Helvetica 14 bold",
-						command = lambda: self.update(self.InputText.get(), self.combo2.get()))
+						command = lambda: self.update(self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get(), self.combo2.get()))
 
-		self.updateb.place(relx = 0.65,
+		self.updateb.place(relx = 0.55,
 					rely = 0.3)
 
-		self.InputText.bind('<Return>', self.callback1)
+		self.InputText1.bind('<Return>', self.callback1)
 
 		# create a Label
 		self.labelResults = Label(self.Window,
@@ -400,13 +373,10 @@ class GUI:
 	# def goAhead(self, devname, genname, stoname, platname, gamtitl, palytime, systmfamily, esrbrate, metacritrate, userrate, reldate):
         # the stuff to do when searching
 
-	# def loadWishlst(self, input):
-	# the stuff to do when loading a wishlist
-
-	# def addToWishlist(self, input):
+	# def addToWishlist(self, devname, genname, stoname, platname, gamtitl, palytime, systmfamily, esrbrate, metacritrate, userrate, reldate):
 	# the stuff to do adding an entry to the wishlist
 
-	# def update(self, input, umethod):
+	# def update(self, devname, genname, stoname, platname, gamtitl, palytime, systmfamily, esrbrate, metacritrate, userrate, reldate, umethod):
 	# the stuff to do when performing updates
 
 # create a GUI class object
