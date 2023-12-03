@@ -4,28 +4,7 @@ from tkinter import *
 import json
 import os
 import mysql.connector
-import json
-
-
-"""
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Setting up Database Connection
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-"""
-
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Change this to your directory
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-path_to_games = "C:/Users/Nick/Desktop/Python/Project/gamedata/"
-
-with open("connectorConfig.json", "r") as f:
-    config = json.load(f)
-connection_config = config["mysql"]
-data_base = mysql.connector.connect(**connection_config)
-
-# Preparing a cursor object to use throughout app
-cursor_object = data_base.cursor()
+from tkinter import ttk
 
 # GUI Classes
 class SearchPage:
@@ -44,7 +23,7 @@ class SearchPage:
 
 		# Create category name to inform user what kind of input they should have
 		self.MultivaluedLabel = Label(self.Window,
-									  text="Multivalued Parameters: Input either a single value or multiple values "
+									  text="Multivalued Parameters: Input either a signle value or multiple values "
 										  + "seperated by commas (e.g. value1,value2,value3)",
 									  font = "Helvetica 16").place(x=0, y=0)
 
@@ -113,7 +92,7 @@ class SearchPage:
 
 		# Create category name to inform user what kind of input they should have
 		self.SingleValuedLabel = Label(self.Window,
-									  text="Single Valued Parameters: Input either a single value only",
+									  text="Single Valued Parameters: Input either a signle value only",
 									  font = "Helvetica 16").place(x=0, y=100)
 
 		# create a Label
@@ -153,44 +132,67 @@ class SearchPage:
 
 		self.InputText8.grid(row=4, column=5, padx=2, pady=2)
 
+		self.InputText8.grid(row=4, column=5, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput9 = Label(self.Window,
 							text = "Metacritic Rating: ",
 							font = "Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
-		
+
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.MetaCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
+
+		self.MetaCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
+
+		self.MetaCombo.current(0)
+		self.MetaCombo.grid(row=5, column=1, padx=2, pady=2)
+
 		# create a entry box for
 		# typing the input
 		self.InputText9 = Entry(self.Window,
 							font = "Helvetica 14")
 
-		self.InputText9.grid(row=5, column=1, padx=2, pady=2)
-
+		self.InputText9.grid(row=5, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput10 = Label(self.Window,
 							text = "User Rating: ",
-							font = "Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
-		
+							font = "Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.UserCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
+
+		self.UserCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
+
+		self.UserCombo.current(0)
+		self.UserCombo.grid(row=6, column=1, padx=2, pady=2)
+
 		# create a entry box for
 		# typing the input
 		self.InputText10 = Entry(self.Window,
 							font = "Helvetica 14")
 
-		self.InputText10.grid(row=5, column=3, padx=2, pady=2)
-
+		self.InputText10.grid(row=6, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput11 = Label(self.Window,
 							text = "Release Date: ",
-							font = "Helvetica 12").grid(row=5, column=4, padx=2, pady=2)
+							font = "Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 		
 		# create a entry box for
 		# typing the input
 		self.InputText11 = Entry(self.Window,
 							font = "Helvetica 14")
 
-		self.InputText11.grid(row=5, column=5, padx=2, pady=2)
+		self.InputText11.grid(row=7, column=1, padx=2, pady=2)
 		
 		# create a Search Button along with action
 		self.go = Button(self.Window,
@@ -198,7 +200,7 @@ class SearchPage:
 						font = "Helvetica 20 bold",
 						command = lambda: Search(self, self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 		
-		self.go.grid(row=6, column=0, padx=2, pady=2)
+		self.go.grid(row=8, column=0, padx=2, pady=2)
 
 		self.Window.mainloop()
 
@@ -217,7 +219,7 @@ class SearchResultsPage:
 
 		self.ResultsBox = Listbox(self.window,
 								  font="Helvetica 14",
-								  height=20,
+								  height=len(results),
 								  selectmode=MULTIPLE,
 								  width=100,
 								  xscrollcommand = self.HorizontalScroll.set,
@@ -262,7 +264,7 @@ class WishlistPage:
 
 		self.WishlistBox = Listbox(self.window,
 								  font="Helvetica 14",
-								  height=20,
+								  height=len(results),
 								  selectmode=MULTIPLE,
 								  width=100,
 								  xscrollcommand=self.HorizontalScroll.set,
@@ -314,7 +316,7 @@ class UpdateSearchPage:
 
 		# Create category name to inform user what kind of input they should have
 		self.MultivaluedLabel = Label(self.Window,
-									  text="Multivalued Parameters: Input either a single value or multiple values "
+									  text="Multivalued Parameters: Input either a signle value or multiple values "
 										   + "seperated by commas (e.g. value1,value2,value3)",
 									  font="Helvetica 16").place(x=0, y=0)
 
@@ -381,7 +383,7 @@ class UpdateSearchPage:
 
 		# Create category name to inform user what kind of input they should have
 		self.SingleValuedLabel = Label(self.Window,
-									   text="Single Valued Parameters: Input either a single value only",
+									   text="Single Valued Parameters: Input either a signle value only",
 									   font="Helvetica 16").place(x=0, y=100)
 
 		# create a Label
@@ -425,249 +427,58 @@ class UpdateSearchPage:
 								 text="Metacritic Rating: ",
 								 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
-		# create a entry box for
-		# typing the input
-		self.InputText9 = Entry(self.Window,
-								font="Helvetica 14")
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.MetaCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
 
-		self.InputText9.grid(row=5, column=1, padx=2, pady=2)
+		self.MetaCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
 
-		# create a Label
-		self.labelInput10 = Label(self.Window,
-								  text="User Rating: ",
-								  font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText10 = Entry(self.Window,
-								 font="Helvetica 14")
-
-		self.InputText10.grid(row=5, column=3, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput11 = Label(self.Window,
-								  text="Release Date: ",
-								  font="Helvetica 12").grid(row=5, column=4, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText11 = Entry(self.Window,
-								 font="Helvetica 14")
-
-		self.InputText11.grid(row=5, column=5, padx=2, pady=2)
-
-		# create a Search Button along with action
-		self.go = Button(self.Window,
-						 text="Search Game to Update",
-						 font="Helvetica 20 bold",
-						 command=lambda: SearchUpdate(self, self.InputText1.get(), self.InputText2.get(),
-												self.InputText3.get(), self.InputText4.get(), self.InputText5.get(),
-												self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
-												self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
-
-		self.go.grid(row=6, column=0, padx=2, pady=2)
-
-		self.Window.mainloop()
-
-class SearchResultsUpdatePage:
-
-	# Constructor
-	def __init__(self, results):
-		# Declare tkinter window and configure
-		self.window = Tk()
-		self.window.title("DB Search Results")
-		self.window.minsize(1280, 720)
-
-		self.HorizontalScroll = Scrollbar(self.window, orient='horizontal')
-		self.VerticalScroll = Scrollbar(self.window)
-
-		self.ResultsBox = Listbox(self.window,
-								  font="Helvetica 14",
-								  height=20,
-								  selectmode=SINGLE,
-								  width=100,
-								  xscrollcommand=self.HorizontalScroll.set,
-								  yscrollcommand=self.VerticalScroll.set)
-
-		self.HorizontalScroll.config(command=self.ResultsBox.xview())
-		self.VerticalScroll.config(command=self.ResultsBox.yview())
-
-		i = 1
-		for item in results:
-			self.ResultsBox.insert(i, item)
-			i += 1
-
-		self.HorizontalScroll.pack(side=BOTTOM, fill=X)
-		self.VerticalScroll.pack(side=RIGHT, fill=Y)
-		self.ResultsBox.pack()
-
-		self.Instructions = Label(self.window,
-								  text="Select the record you want to update.",
-								  font="Helvetica 16").pack()
-
-		self.WishlistButton = Button(self.window,
-									 text="Select record",
-									 font="Helvetica 20 bold",
-									 command=lambda: GrabUpdateRecord(self, self.ResultsBox.curselection()),
-									 width=20,
-									 height=5).pack()
-
-		self.window.mainloop()
-
-class UpdatePage:
-
-	# Constructor
-	def __init__(self, record):
-		# Declare tkinter window and configure
-		self.Window = Tk()
-		self.Window.title("DB Search")
-		self.Window.minsize(1280, 720)
-
-		# Place spacer before category label so category label covers it
-		self.Spacer1 = Label(self.Window).grid(row=0, column=0, padx=2, pady=10)
-
-		# Create category name to inform user what kind of input they should have
-		self.MultivaluedLabel = Label(self.Window,
-									  text="Multivalued Parameters: Input either a single value or multiple values "
-										   + "seperated by commas (e.g. value1,value2,value3)",
-									  font="Helvetica 16").place(x=0, y=0)
-
-		# create a Label
-		self.labelInput1 = Label(self.Window,
-								 text="Developer Name(s): ",
-								 font="Helvetica 12").grid(row=1, column=0, padx=2, pady=2)
-
-		# create a entry box for typing the input
-		self.InputText1 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText1.grid(row=1, column=1, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput2 = Label(self.Window,
-								 text="Genre Name(s): ",
-								 font="Helvetica 12").grid(row=1, column=2, padx=2, pady=2)
-
-		# create a entry box for typing the input
-		self.InputText2 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText2.grid(row=1, column=3, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput3 = Label(self.Window,
-								 text="Store Name(s): ",
-								 font="Helvetica 12").grid(row=1, column=4, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText3 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText3.grid(row=1, column=5, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput4 = Label(self.Window,
-								 text="Platform Name(s): ",
-								 font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText4 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText4.grid(row=2, column=1, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput5 = Label(self.Window,
-								 text="Parent Platform(s): ",
-								 font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText5 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText5.grid(row=2, column=3, padx=2, pady=2)
-
-		# Place spacer before category label so category label covers it
-		self.Spacer1 = Label(self.Window).grid(row=3, column=0, padx=2, pady=10)
-
-		# Create category name to inform user what kind of input they should have
-		self.SingleValuedLabel = Label(self.Window,
-									   text="Single Valued Parameters: Input either a single value only",
-									   font="Helvetica 16").place(x=0, y=100)
-
-		# create a Label
-		self.labelInput6 = Label(self.Window,
-								 text="Game Title: ",
-								 font="Helvetica 12").grid(row=4, column=0, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText6 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText6.grid(row=4, column=1, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput7 = Label(self.Window,
-								 text="Playtime: ",
-								 font="Helvetica 12").grid(row=4, column=2, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText7 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText7.grid(row=4, column=3, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput8 = Label(self.Window,
-								 text="ESRB Rating: ",
-								 font="Helvetica 12").grid(row=4, column=4, padx=2, pady=2)
-
-		# create a entry box for
-		# typing the input
-		self.InputText8 = Entry(self.Window,
-								font="Helvetica 14")
-
-		self.InputText8.grid(row=4, column=5, padx=2, pady=2)
-
-		# create a Label
-		self.labelInput9 = Label(self.Window,
-								 text="Metacritic Rating: ",
-								 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
+		self.MetaCombo.current(0)
+		self.MetaCombo.grid(row=5, column=1, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText9 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText9.grid(row=5, column=1, padx=2, pady=2)
+		self.InputText9.grid(row=5, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput10 = Label(self.Window,
 								  text="User Rating: ",
-								  font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
+								  font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.UserCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
+
+		self.UserCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
+
+		self.UserCombo.current(0)
+		self.UserCombo.grid(row=6, column=1, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText10 = Entry(self.Window,
 								 font="Helvetica 14")
 
-		self.InputText10.grid(row=5, column=3, padx=2, pady=2)
+		self.InputText10.grid(row=6, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput11 = Label(self.Window,
 								  text="Release Date: ",
-								  font="Helvetica 12").grid(row=5, column=4, padx=2, pady=2)
+								  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText11 = Entry(self.Window,
 								 font="Helvetica 14")
-
 		self.InputText11.grid(row=5, column=5, padx=2, pady=2)
 
 		# create a Search Button along with action
@@ -1073,10 +884,25 @@ def UpdateRecord(self, devname, genname, stoname, platname, parentplat, gamtitl,
 	tkinter.messagebox.showinfo('Update Status', "As if I know")
 	self.Window.destroy()
 
-def UpdateRecordTrigger(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate, reldate, record):
-	print("Working on it")
-	tkinter.messagebox.showinfo('Update Status', "As if I know")
-	self.Window.destroy()
+"""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting up Database Connection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
 
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Change this to your directory
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+path_to_games = "C:/Users/Nick/Desktop/Python/Project/gamedata/"
+
+with open("connectorConfig.json", "r") as f:
+    config = json.load(f)
+connection_config = config["mysql"]
+data_base = mysql.connector.connect(**connection_config)
+
+# Preparing a cursor object to use throughout app
+cursor_object = data_base.cursor()
+  
 # create a GUI class object
 g = HomePage()
