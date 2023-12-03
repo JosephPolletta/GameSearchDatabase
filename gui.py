@@ -228,7 +228,9 @@ class SearchResultsPage:
 		self.HorizontalScroll.config(command = self.ResultsBox.xview())
 		self.VerticalScroll.config(command=self.ResultsBox.yview())
 
-		i=1
+		self.ResultsBox.insert(1, ['Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating', 'User Rating', 'Developer'])
+
+		i=2
 		for item in results:
 			self.ResultsBox.insert(i, item)
 			i += 1
@@ -273,7 +275,9 @@ class WishlistPage:
 		self.HorizontalScroll.config(command=self.WishlistBox.xview())
 		self.VerticalScroll.config(command=self.WishlistBox.yview())
 
-		i = 1
+		self.ResultsBox.insert(1, ['Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating', 'User Rating', 'Developer'])
+
+		i = 2
 		for item in results:
 			self.WishlistBox.insert(i, item)
 			i += 1
@@ -517,7 +521,9 @@ class SearchResultsUpdatePage:
 		self.HorizontalScroll.config(command=self.ResultsBox.xview())
 		self.VerticalScroll.config(command=self.ResultsBox.yview())
 
-		i = 1
+		self.ResultsBox.insert(1, ['Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating', 'User Rating', 'Developer'])
+
+		i = 2
 		for item in results:
 			self.ResultsBox.insert(i, item)
 			i += 1
@@ -773,7 +779,7 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
 	statement = """
 				SELECT distinct 
 				g.game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating,
-				d.name as Developer, genre, p.name as Platform, pp.name as "Parent Platform", s.name as Store
+				d.name as Developer
 				from game g join gamedeveloper gd on g.game_id = gd.game_id
 					join developer d on d.developer_id = gd.developer_id
 					join gamegenre gg on g.game_id = gg.game_id
