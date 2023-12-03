@@ -217,7 +217,7 @@ class SearchResultsPage:
 
 		self.ResultsBox = Listbox(self.window,
 								  font="Helvetica 14",
-								  height=len(results),
+								  height=20,
 								  selectmode=MULTIPLE,
 								  width=100,
 								  xscrollcommand = self.HorizontalScroll.set,
@@ -735,11 +735,82 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
 					join parentplatform pp on gpp.parentplatform_id = pp.parentplatform_id
 					join gamestore gs on g.game_id = gs.game_id
 					join store s on gs.store_id = s.store_id
-					limit 1000
- 				"""
-     
+					WHERE """
+    # Variable to tell if the AND needs to be added before the string
+	isFirstInput = 0
+ 
+	# Single valued
+	if gamtitl:
+		isFirstInput = 1
+		statement = statement + "title like '%" + gamtitl + "%'"
+	if playtime:
+		if isFirstInput == 1:
+			# less than playtime for now
+			statement = statement + " AND playtime < " + str(playtime)
+		else:
+			isFirstInput = 1
+			statement = statement + "playtime < " + str(playtime)
+	if esrbrate:
+		if isFirstInput == 1:
+			statement = statement + " AND ESRB_rating like '%" + esrbrate + "%'"
+		else:
+			isFirstInput = 1
+			statement = statement + "ESRB_rating like '%" + esrbrate + "%'"
+	if metacritrate:
+		if isFirstInput == 1:
+			# greater than metacritic rating for now
+			statement = statement + " AND metacritic_rating > " + str(metacritrate)
+		else:
+			isFirstInput = 1
+			statement = statement + "metacritic_rating > " + str(metacritrate)
+	if userrate:
+		if isFirstInput == 1:
+			# greater than user rating for now
+			statement = statement + " AND user_rating > " + str(userrate)
+		else:
+			isFirstInput = 1
+			statement = statement + "user_rating > " + str(userrate)
+	if reldate:
+		if isFirstInput == 1:
+			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+		else:
+			isFirstInput = 1
+			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+ 	 # Multivalued
+	if devname:
+		if isFirstInput == 1:
+			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+		else:
+			isFirstInput = 1
+			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+	if genname:
+		if isFirstInput == 1:
+			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+		else:
+			isFirstInput = 1
+			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+	if stoname:
+		if isFirstInput == 1:
+			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+		else:
+			isFirstInput = 1
+			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+	if platname:
+		if isFirstInput == 1:
+			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+		else:
+			isFirstInput = 1
+			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+	if parentplat:
+		if isFirstInput == 1:
+			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+		else:
+			isFirstInput = 1
+			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+   
 	cursor_object.execute(statement)
 	games = cursor_object.fetchall()
+	
 	self.Window.destroy()
 	g = SearchResultsPage(games)
 
@@ -760,7 +831,7 @@ def SearchUpdate(self, devname, genname, stoname, platname, parentplat, gamtitl,
 					join parentplatform pp on gpp.parentplatform_id = pp.parentplatform_id
 					join gamestore gs on g.game_id = gs.game_id
 					join store s on gs.store_id = s.store_id
-					limit = 1000
+					limit 1000
  				"""
 	cursor_object.execute(statement)
 	games = cursor_object.fetchall()
