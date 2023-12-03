@@ -776,37 +776,62 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
 		else:
 			isFirstInput = 1
 			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
- 	 # Multivalued
+ 	# Multivalued
 	if devname:
+		devs = devname.split(",")
 		if isFirstInput == 1:
-			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+			for dev in devs:
+				statement = statement + " OR d.name like '%" + dev + "%'"
 		else:
 			isFirstInput = 1
-			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+			for dev in devs:
+				statement = statement + "d.name like '%" + dev + "%' OR "
+			# Splicing to get rid of the extra " OR " 
+			statement = statement[:-4]
 	if genname:
+		genres = genname.split(",")
 		if isFirstInput == 1:
-			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+			for gen in genres:
+				statement = statement + " AND genre like '%" + gen + "%'"
 		else:
 			isFirstInput = 1
-			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+			for gen in genres:
+				statement = statement + "genre like '%" + gen + "%' AND "
+			# Splicing to get rid of the extra " AND " 
+			statement = statement[:-5]
 	if stoname:
+		stores = stoname.split(",")
 		if isFirstInput == 1:
-			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+			for store in stores:
+				statement = statement + " AND s.name like '%" + store + "%'"
 		else:
 			isFirstInput = 1
-			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+			for store in stores:
+				statement = statement + "s.name like '%" + store + "%' AND "
+			# Splicing to get rid of the extra " AND " 
+			statement = statement[:-5]
 	if platname:
+		platforms = platname.split(",")
 		if isFirstInput == 1:
-			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+			for platform in platforms:
+				statement = statement + " AND p.name like '%" + platform + "%'"
 		else:
 			isFirstInput = 1
-			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+			for platform in platforms:
+				statement = statement + "p.name like '%" + platform + "%' AND "
+			# Splicing to get rid of the extra " AND " 
+			statement = statement[:-5]
 	if parentplat:
+		parentplatforms = parentplat.split(",")
 		if isFirstInput == 1:
-			statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
+			for parentplatform in parentplatforms:
+				statement = statement + " AND pp.name like '%" + parentplatform + "%'"
 		else:
 			isFirstInput = 1
-			statement = statement + "first_release_date like '%" + str(reldate) + "%'"
+			for parentplatform in parentplatforms:
+				statement = statement + "pp.name like '%" + parentplatform + "%' AND "
+			# Splicing to get rid of the extra " AND " 
+			statement = statement[:-5]
    
 	cursor_object.execute(statement)
 	games = cursor_object.fetchall()
