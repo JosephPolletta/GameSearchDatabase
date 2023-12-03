@@ -345,87 +345,87 @@ class UpdateSearchPage:
 		# create a Label
 		self.labelInput3 = Label(self.Window,
 								 text="Store Name(s): ",
-								 font="Helvetica 12").grid(row=1, column=4, padx=2, pady=2)
+								 font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText3 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText3.grid(row=1, column=5, padx=2, pady=2)
+		self.InputText3.grid(row=2, column=1, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput4 = Label(self.Window,
 								 text="Platform Name(s): ",
-								 font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
+								 font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText4 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText4.grid(row=2, column=1, padx=2, pady=2)
+		self.InputText4.grid(row=2, column=3, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput5 = Label(self.Window,
 								 text="Parent Platform(s): ",
-								 font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
+								 font="Helvetica 12").grid(row=3, column=0, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText5 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText5.grid(row=2, column=3, padx=2, pady=2)
+		self.InputText5.grid(row=3, column=1, padx=2, pady=2)
 
 		# Place spacer before category label so category label covers it
-		self.Spacer1 = Label(self.Window).grid(row=3, column=0, padx=2, pady=10)
+		self.Spacer1 = Label(self.Window).grid(row=4, column=0, padx=2, pady=10)
 
 		# Create category name to inform user what kind of input they should have
 		self.SingleValuedLabel = Label(self.Window,
 									   text="Single Valued Parameters: Input either a signle value only",
-									   font="Helvetica 16").place(x=0, y=100)
+									   font="Helvetica 16").place(x=0, y=150)
 
 		# create a Label
 		self.labelInput6 = Label(self.Window,
 								 text="Game Title: ",
-								 font="Helvetica 12").grid(row=4, column=0, padx=2, pady=2)
+								 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText6 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText6.grid(row=4, column=1, padx=2, pady=2)
+		self.InputText6.grid(row=5, column=1, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput7 = Label(self.Window,
 								 text="Playtime: ",
-								 font="Helvetica 12").grid(row=4, column=2, padx=2, pady=2)
+								 font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText7 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText7.grid(row=4, column=3, padx=2, pady=2)
+		self.InputText7.grid(row=5, column=3, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput8 = Label(self.Window,
 								 text="ESRB Rating: ",
-								 font="Helvetica 12").grid(row=4, column=4, padx=2, pady=2)
+								 font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText8 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText8.grid(row=4, column=5, padx=2, pady=2)
+		self.InputText8.grid(row=6, column=1, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput9 = Label(self.Window,
 								 text="Metacritic Rating: ",
-								 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
+								 font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
 		# create a combobox for selecting <= or >=
 		n = tkinter.StringVar()
@@ -437,19 +437,19 @@ class UpdateSearchPage:
 									'Less than or equal to')
 
 		self.MetaCombo.current(0)
-		self.MetaCombo.grid(row=5, column=1, padx=2, pady=2)
+		self.MetaCombo.grid(row=7, column=1, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText9 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText9.grid(row=5, column=2, padx=2, pady=2)
+		self.InputText9.grid(row=7, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput10 = Label(self.Window,
 								  text="User Rating: ",
-								  font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+								  font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
 		# create a combobox for selecting <= or >=
 		n = tkinter.StringVar()
@@ -461,25 +461,25 @@ class UpdateSearchPage:
 									'Less than or equal to')
 
 		self.UserCombo.current(0)
-		self.UserCombo.grid(row=6, column=1, padx=2, pady=2)
+		self.UserCombo.grid(row=8, column=1, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText10 = Entry(self.Window,
 								 font="Helvetica 14")
 
-		self.InputText10.grid(row=6, column=2, padx=2, pady=2)
+		self.InputText10.grid(row=8, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput11 = Label(self.Window,
 								  text="Release Date: ",
-								  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
+								  font="Helvetica 12").grid(row=9, column=0, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText11 = Entry(self.Window,
 								 font="Helvetica 14")
-		self.InputText11.grid(row=5, column=5, padx=2, pady=2)
+		self.InputText11.grid(row=9, column=1, padx=2, pady=2)
 
 		# create a Search Button along with action
 		self.go = Button(self.Window,
@@ -490,7 +490,7 @@ class UpdateSearchPage:
 												self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
 												self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 
-		self.go.grid(row=8, column=0, padx=2, pady=2)
+		self.go.grid(row=10, column=0, padx=2, pady=2)
 
 		self.Window.mainloop()
 
