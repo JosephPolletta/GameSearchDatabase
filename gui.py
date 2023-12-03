@@ -48,7 +48,6 @@ class SearchPage:
 
 		self.InputText2.grid(row=1, column=3, padx=2, pady=2)
 
-
 		# create a Label
 		self.labelInput3 = Label(self.Window,
 							text = "Store Name(s): ",
@@ -94,7 +93,6 @@ class SearchPage:
 		self.SingleValuedLabel = Label(self.Window,
 									  text="Single Valued Parameters: Input either a signle value only",
 									  font = "Helvetica 16").place(x=0, y=100)
-
 
 		# create a Label
 		self.labelInput6 = Label(self.Window,
@@ -338,20 +336,25 @@ def StartWishlist():
 			listpassthrough = wishlist['stored']
 	except:
 		listpassthrough = []
+    
 	g = WishlistPage(listpassthrough)
 
 def RemoveFromWishlist(self, totalrecords, removalrecords):
+  
 	recordsToBeRemoved = []
 	recordsToBeKept = []
 	writeDict = {}
+  
 	for record in removalrecords:
 		recordsToBeRemoved.append(self.WishlistBox.get(record)[0])
 	for record in totalrecords:
 		if record[0] not in recordsToBeRemoved:
 			recordsToBeKept.append(record[0])
+      
 	writeDict['stored'] = recordsToBeKept
 	print(writeDict)
 	json.dump(writeDict, open("wishlist.json", "w"))
+  
 	self.window.destroy()
 
 # create a GUI class object
