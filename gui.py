@@ -1,6 +1,7 @@
 # import all the required modules
 import tkinter.messagebox
 from tkinter import *
+from tkinter import ttk
 import json
 
 # GUI Classes
@@ -130,44 +131,66 @@ class SearchPage:
 
 		self.InputText8.grid(row=4, column=5, padx=2, pady=2)
 
-
 		# create a Label
 		self.labelInput9 = Label(self.Window,
 							text = "Metacritic Rating: ",
 							font = "Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
-		
+
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.MetaCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
+
+		self.MetaCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
+
+		self.MetaCombo.current(0)
+		self.MetaCombo.grid(row=5, column=1, padx=2, pady=2)
+
 		# create a entry box for
 		# typing the input
 		self.InputText9 = Entry(self.Window,
 							font = "Helvetica 14")
 
-		self.InputText9.grid(row=5, column=1, padx=2, pady=2)
-
+		self.InputText9.grid(row=5, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput10 = Label(self.Window,
 							text = "User Rating: ",
-							font = "Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
-		
+							font = "Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.UserCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
+
+		self.UserCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
+
+		self.UserCombo.current(0)
+		self.UserCombo.grid(row=6, column=1, padx=2, pady=2)
+
 		# create a entry box for
 		# typing the input
 		self.InputText10 = Entry(self.Window,
 							font = "Helvetica 14")
 
-		self.InputText10.grid(row=5, column=3, padx=2, pady=2)
+		self.InputText10.grid(row=6, column=2, padx=2, pady=2)
 
 
 		# create a Label
 		self.labelInput11 = Label(self.Window,
 							text = "Release Date: ",
-							font = "Helvetica 12").grid(row=5, column=4, padx=2, pady=2)
+							font = "Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 		
 		# create a entry box for
 		# typing the input
 		self.InputText11 = Entry(self.Window,
 							font = "Helvetica 14")
 
-		self.InputText11.grid(row=5, column=5, padx=2, pady=2)
+		self.InputText11.grid(row=7, column=1, padx=2, pady=2)
 		
 		# create a Search Button along with action
 		self.go = Button(self.Window,
@@ -175,7 +198,7 @@ class SearchPage:
 						font = "Helvetica 20 bold",
 						command = lambda: Search(self, self.InputText1.get(), self.InputText2.get(), self.InputText3.get(), self.InputText4.get(), self.InputText5.get(), self.InputText6.get(), self.InputText7.get(), self.InputText8.get(), self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 		
-		self.go.grid(row=6, column=0, padx=2, pady=2)
+		self.go.grid(row=8, column=0, padx=2, pady=2)
 
 		self.Window.mainloop()
 
@@ -402,47 +425,71 @@ class UpdateSearchPage:
 								 text="Metacritic Rating: ",
 								 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.MetaCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
+
+		self.MetaCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
+
+		self.MetaCombo.current(0)
+		self.MetaCombo.grid(row=5, column=1, padx=2, pady=2)
+
 		# create a entry box for
 		# typing the input
 		self.InputText9 = Entry(self.Window,
 								font="Helvetica 14")
 
-		self.InputText9.grid(row=5, column=1, padx=2, pady=2)
+		self.InputText9.grid(row=5, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput10 = Label(self.Window,
 								  text="User Rating: ",
-								  font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
+								  font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+
+		# create a combobox for selecting <= or >=
+		n = tkinter.StringVar()
+		self.UserCombo = ttk.Combobox(self.Window,
+									  textvariable=n,
+									  font="Helvetica 14")
+
+		self.UserCombo['values'] = ('Greater than or equal to',
+									'Less than or equal to')
+
+		self.UserCombo.current(0)
+		self.UserCombo.grid(row=6, column=1, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText10 = Entry(self.Window,
 								 font="Helvetica 14")
 
-		self.InputText10.grid(row=5, column=3, padx=2, pady=2)
+		self.InputText10.grid(row=6, column=2, padx=2, pady=2)
 
 		# create a Label
 		self.labelInput11 = Label(self.Window,
 								  text="Release Date: ",
-								  font="Helvetica 12").grid(row=5, column=4, padx=2, pady=2)
+								  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
 		# create a entry box for
 		# typing the input
 		self.InputText11 = Entry(self.Window,
 								 font="Helvetica 14")
 
-		self.InputText11.grid(row=5, column=5, padx=2, pady=2)
+		self.InputText11.grid(row=7, column=1, padx=2, pady=2)
 
 		# create a Search Button along with action
 		self.go = Button(self.Window,
-						 text="Search Game to Update",
+						 text="Search",
 						 font="Helvetica 20 bold",
-						 command=lambda: SearchUpdate(self, self.InputText1.get(), self.InputText2.get(),
+						 command=lambda: Search(self, self.InputText1.get(), self.InputText2.get(),
 												self.InputText3.get(), self.InputText4.get(), self.InputText5.get(),
 												self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
 												self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 
-		self.go.grid(row=6, column=0, padx=2, pady=2)
+		self.go.grid(row=8, column=0, padx=2, pady=2)
 
 		self.Window.mainloop()
 
