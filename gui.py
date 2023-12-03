@@ -305,7 +305,7 @@ class WishlistPage:
 class UpdateSearchPage:
 
 	# Constructor
-	def __init__(self, record):
+	def __init__(self):
 		# Declare tkinter window and configure
 		self.Window = Tk()
 		self.Window.title("DB Search for Update")
@@ -483,30 +483,14 @@ class UpdateSearchPage:
 
 		# create a Search Button along with action
 		self.go = Button(self.Window,
-						 text="Update Record (Transaction)",
+						 text="Search for game to update",
 						 font="Helvetica 20 bold",
-						 command=lambda: UpdateRecord(self, self.InputText1.get(), self.InputText2.get(),
+						 command=lambda: SearchUpdate(self, self.InputText1.get(), self.InputText2.get(),
 												self.InputText3.get(), self.InputText4.get(), self.InputText5.get(),
 												self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
-												self.InputText9.get(), self.InputText10.get(), self.InputText11.get(),
-													  record))
+												self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
 
-		self.go.grid(row=6, column=0, padx=2, pady=2)
-
-		# create a Search Button along with action
-		self.goTrigger = Button(self.Window,
-						 text="Update Record (Trigger)",
-						 font="Helvetica 20 bold",
-						 command=lambda: UpdateRecordTrigger(self, self.InputText1.get(), self.InputText2.get(),
-													  self.InputText3.get(), self.InputText4.get(),
-													  self.InputText5.get(),
-													  self.InputText6.get(), self.InputText7.get(),
-													  self.InputText8.get(),
-													  self.InputText9.get(), self.InputText10.get(),
-													  self.InputText11.get(),
-													  record))
-
-		self.goTrigger.grid(row=7, column=0, padx=2, pady=2)
+		self.go.grid(row=8, column=0, padx=2, pady=2)
 
 		self.Window.mainloop()
 
@@ -733,6 +717,36 @@ class UpdatePage:
 								 font="Helvetica 14")
 
 		self.InputText11.grid(row=5, column=5, padx=2, pady=2)
+
+		# create a Search Button along with action
+		self.go = Button(self.Window,
+						 text="Update Record (Transaction)",
+						 font="Helvetica 20 bold",
+						 command=lambda: UpdateRecord(self, self.InputText1.get(), self.InputText2.get(),
+													  self.InputText3.get(), self.InputText4.get(),
+													  self.InputText5.get(),
+													  self.InputText6.get(), self.InputText7.get(),
+													  self.InputText8.get(),
+													  self.InputText9.get(), self.InputText10.get(),
+													  self.InputText11.get()))
+
+		self.go.grid(row=6, column=0, padx=2, pady=2)
+
+		# create a Search Button along with action
+		self.goTrigger = Button(self.Window,
+								text="Update Record (Trigger)",
+								font="Helvetica 20 bold",
+								command=lambda: UpdateRecordTrigger(self, self.InputText1.get(), self.InputText2.get(),
+																	self.InputText3.get(), self.InputText4.get(),
+																	self.InputText5.get(),
+																	self.InputText6.get(), self.InputText7.get(),
+																	self.InputText8.get(),
+																	self.InputText9.get(), self.InputText10.get(),
+																	self.InputText11.get()))
+
+		self.goTrigger.grid(row=7, column=0, padx=2, pady=2)
+
+		self.Window.mainloop()
 
 class HomePage:
 
