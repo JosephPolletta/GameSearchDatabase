@@ -31,6 +31,9 @@ cursor_object = data_base.cursor()
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Opening Wishlist/Creating it if it doesn't exist or is empty
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+wishlist = {}
+
 try: 
 	with open('wishlist.json', 'r') as file:
 		# Reading from json file
@@ -40,21 +43,6 @@ except:
     with open('wishlist.json', 'w') as file:
         print("Created Wishlist")
 
-
-# Loads the first 100 rows of the game table for users to look at and populates the wishlist if there is anything already in it upon startup
-def initialize():
-	initial_statement = """
-						select title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating, name AS Developer, genre
-						from game g join gamedeveloper gd on g.game_id = gd.game_id
-							join developer d on d.developer_id = gd.developer_id
-							join gamegenre gg on g.game_id = gg.game_id
-							join genre gen on gg.genre_id = gen.genre_id
- 						limit 100
-       					"""
-	cursor_object.execute(initial_statement)
-	initial_list = cursor_object.fetchall()
-	print(initial_list)
-	return
 
 """
 ~~~~~~~~~~~~~~
@@ -333,7 +321,7 @@ class GUI:
 
 		self.combo2 = ttk.Combobox(self.Window,
 			state="readonly",
-			values=["Proceedure", "Direct"]
+			values=["Procedure", "Direct"]
 		)
 
 		self.combo2.place(relwidth = 0.4,
@@ -354,7 +342,8 @@ class GUI:
 		
 		self.go.place(relx = 0.1,
 					rely = 0.3)
-		# create a Search Button
+		
+  		# create a Search Button
 		# along with action
 		self.loadw = Button(self.Window,
 						text = "Load Wishlist",
@@ -405,23 +394,24 @@ class GUI:
 							relx = 0.65,
 							rely = 0.35)
 
-		self.results = Text(self.Window,
+		# The results list
+		self.results = Listbox(self.Window,
 							width = 20,
 							height = 2,
 							font = "Helvetica 14",
-							padx = 5,
-							pady = 5)
+							)
 		
 		self.results.place(relheight = 0.6,
 							relwidth = 0.35,
 							rely = 0.4, relx = 0.1)
 
-		self.wishlist = Text(self.Window,
+		
+		# The wishlist list
+		self.wishlist = Listbox(self.Window,
 							width = 20,
 							height = 2,
 							font = "Helvetica 14",
-							padx = 5,
-							pady = 5)
+							)
 		
 		self.wishlist.place(relheight = 0.6,
 							relwidth = 0.35,
@@ -446,9 +436,21 @@ class GUI:
 		scrollbar.config(command = self.results.yview)
 		scrollbar2.config(command = self.wishlist.yview)
 
-		self.results.config(state = DISABLED)
-		self.wishlist.config(state = DISABLED)
-
+		# Loads the first 100 rows of the game table for users to look at and populates the wishlist if there is anything already in it upon startup
+		initial_statement = """
+							select title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating, name AS Developer, genre
+							from game g join gamedeveloper gd on g.game_id = gd.game_id
+								join developer d on d.developer_id = gd.developer_id
+								join gamegenre gg on g.game_id = gg.game_id
+								join genre gen on gg.genre_id = gen.genre_id
+							limit 100
+							"""
+		cursor_object.execute(initial_statement)
+		initial_list = cursor_object.fetchall()
+  
+		for game in initial_list:
+			self.results.insert(END, game)
+  
 		self.Window.mainloop()
 
 	def callback1(self, event):
@@ -456,8 +458,8 @@ class GUI:
 
  
 	# Function for searching
-	def goAhead(self, devname, genname, stoname, platname, gamtitl, palytime, systmfamily, esrbrate, metacritrate, userrate, reldate):
-		search_statement = ""
+	def goAhead(self, devname, genrename, storename, platformname, gametitle, playtime, systemfamily, esrbrate, metacritrate, userrate, releasedate):
+		
 		return
     
 	# Function for loading a wishlist (Not sure what the point of this is, it should autoload no?)
@@ -467,13 +469,35 @@ class GUI:
 
 	# Function for adding an entry to a wishlist
 	def addToWishlist(self, input):
+		# Get the index of the selected item
+		index = self.results.curselection()
+		
+		if index:  # Check if an item is selected
+			# Get the tuple at the selected index
+			selected_tuple = self.results.get(index)
+			game = list(selected_tuple)
+			
+			print(f"Selected tuple: {selected_tuple}")
+			with open ("wishlist.json", 'w') as file:
+				json.dump(wishlist, file, indent = 4)
+
+		else:
+			print("No item selected")
 		return
 	
  	# Empty update function
 	def update(self, input, umethod):
+		# Get the index of the selected item
+		index = self.results.curselection()
+		
+		if index:  # Check if an item is selected
+			# Get the tuple at the selected index
+			selected_tuple = self.results.get(index)
+			print(f"Selected tuple: {selected_tuple}")
+		else:
+			print("No item selected")
+			search_statement = ""
 		return
-
-initialize()
 
 
 # create a GUI class object
