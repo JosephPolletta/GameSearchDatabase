@@ -219,7 +219,7 @@ class SearchResultsPage:
 
 		self.ResultsBox = Listbox(self.window,
 								  font="Helvetica 14",
-								  height=len(results),
+								  height=20,
 								  selectmode=MULTIPLE,
 								  width=100,
 								  xscrollcommand = self.HorizontalScroll.set,
@@ -264,7 +264,7 @@ class WishlistPage:
 
 		self.WishlistBox = Listbox(self.window,
 								  font="Helvetica 14",
-								  height=len(results),
+								  height=20,
 								  selectmode=MULTIPLE,
 								  width=100,
 								  xscrollcommand=self.HorizontalScroll.set,
