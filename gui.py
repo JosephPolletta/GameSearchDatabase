@@ -579,7 +579,9 @@ class UpdatePage:
         # create a entry box for
         # typing the input
         self.InputText6 = Entry(self.Window,
-                                font="Helvetica 14")
+                                font="Helvetica 14",
+                                )
+        self.InputText6.insert(0, record[1])
 
         self.InputText6.grid(row=5, column=1, padx=2, pady=2)
 
@@ -592,7 +594,8 @@ class UpdatePage:
         # typing the input
         self.InputText7 = Entry(self.Window,
                                 font="Helvetica 14")
-
+        self.InputText7.insert(0, record[2])
+        
         self.InputText7.grid(row=5, column=3, padx=2, pady=2)
 
         # create a Label
@@ -605,6 +608,7 @@ class UpdatePage:
         self.InputText8 = Entry(self.Window,
                                 font="Helvetica 14")
 
+        self.InputText8.insert(0, record[4])
         self.InputText8.grid(row=6, column=1, padx=2, pady=2)
 
         # create a Label
@@ -612,48 +616,20 @@ class UpdatePage:
                                  text="Metacritic Rating: ",
                                  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
-        # create a combobox for selecting <= or >=
-        n = tkinter.StringVar()
-        self.MetaCombo = ttk.Combobox(self.Window,
-                                      textvariable=n,
-                                      font="Helvetica 14")
-
-        self.MetaCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
-
-        self.MetaCombo.current(0)
-        self.MetaCombo.grid(row=7, column=1, padx=2, pady=2)
-
-        # create a entry box for
-        # typing the input
-        self.InputText9 = Entry(self.Window,
+        self.MetaRate = Entry(self.Window,
                                 font="Helvetica 14")
-
-        self.InputText9.grid(row=7, column=2, padx=2, pady=2)
+        self.MetaRate.insert(0, record[5])
+        self.MetaRate.grid(row=7, column=1, padx=2, pady=2)
 
         # create a Label
         self.labelInput10 = Label(self.Window,
                                   text="User Rating: ",
                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
-        # create a combobox for selecting <= or >=
-        n = tkinter.StringVar()
-        self.UserCombo = ttk.Combobox(self.Window,
-                                      textvariable=n,
-                                      font="Helvetica 14")
-
-        self.UserCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
-
-        self.UserCombo.current(0)
-        self.UserCombo.grid(row=8, column=1, padx=2, pady=2)
-
-        # create a entry box for
-        # typing the input
-        self.InputText10 = Entry(self.Window,
-                                 font="Helvetica 14")
-
-        self.InputText10.grid(row=8, column=2, padx=2, pady=2)
+        self.UserRate = Entry(self.Window,
+                                font="Helvetica 14")
+        self.UserRate.insert(0, record[6])
+        self.UserRate.grid(row=8, column=1, padx=2, pady=2)
 
         # create a Label
         self.labelInput11 = Label(self.Window,
@@ -665,18 +641,16 @@ class UpdatePage:
         self.InputText11 = Entry(self.Window,
                                  font="Helvetica 14")
         self.InputText11.grid(row=9, column=1, padx=2, pady=2)
-
+        self.InputText11.insert(0, record[3])
         # create a Search Button along with action
         self.go = Button(self.Window,
                          text="Update Record (Transaction)",
                          font="Helvetica 20 bold",
-                         command=lambda: UpdateRecord(self, self.InputText1.get(), self.InputText2.get(),
-                                                      self.InputText3.get(), self.InputText4.get(),
-                                                      self.InputText5.get(),
+                         command=lambda: UpdateRecord(self,
                                                       self.InputText6.get(), self.InputText7.get(),
                                                       self.InputText8.get(),
-                                                      self.InputText9.get(), self.InputText10.get(),
-                                                      self.InputText11.get()))
+                                                      self.MetaRate.get(), self.UserRate.get(),
+                                                      self.InputText11.get(), record[0]))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -684,13 +658,11 @@ class UpdatePage:
         self.goTrigger = Button(self.Window,
                                 text="Update Record (Trigger)",
                                 font="Helvetica 20 bold",
-                                command=lambda: UpdateRecordTrigger(self, self.InputText1.get(), self.InputText2.get(),
-                                                                    self.InputText3.get(), self.InputText4.get(),
-                                                                    self.InputText5.get(),
+                                command=lambda: UpdateRecordTrigger(self,
                                                                     self.InputText6.get(), self.InputText7.get(),
                                                                     self.InputText8.get(),
-                                                                    self.InputText9.get(), self.InputText10.get(),
-                                                                    self.InputText11.get()))
+                                                                    self.MetaRate.get(), self.UserRate.get(),
+                                                                    self.InputText11.get(), record[0]))
 
         self.goTrigger.grid(row=11, column=0, padx=2, pady=2)
 
@@ -1095,20 +1067,30 @@ def RemoveFromWishlist(self, totalrecords, removalrecords):
 
 
 def GrabUpdateRecord(self, record):
-    print("Working on it")
-    record = [['a', 'b']]
+    recordToUpdate = self.ResultsBox.get(record)
     self.window.destroy()
-    g = UpdatePage(record)
+    g = UpdatePage(recordToUpdate)
 
 
-def UpdateRecord(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate,
-                 userrate, reldate, record):
-    print("Working on it")
-    tkinter.messagebox.showinfo('Update Status', "As if I know")
+def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
+                 userrate, reldate, gameid):
+  
+    updateStatement =    "UPDATE game g" \
+                        " SET title = '" + gamtitl + "'," \
+                        " playtime = '" + playtime + "'," \
+                        " ESRB_rating = '" + esrbrate + "'," \
+                        " metacritic_rating = '" + metacritrate + "',"\
+                        " user_rating = '" + userrate + "'," \
+                        " first_release_date = '"  + reldate + "'" \
+                        " WHERE game_id = " + gameid                   
+    
+    cursor_object.execute(updateStatement)
+    data_base.commit()
+    tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
     self.Window.destroy()
 
 
-def UpdateRecordTrigger(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate,
+def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
                         metacritrate, userrate, reldate, record):
     print("Working on it")
     tkinter.messagebox.showinfo('Update Status', "As if I know")
