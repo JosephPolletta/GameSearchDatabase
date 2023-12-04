@@ -22,7 +22,7 @@ class SearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.MultivaluedLabel = Label(self.Window,
-                                      text="Multivalued Parameters: Input either a signle value or multiple values "
+                                      text="Multivalued Parameters: Input either a single value or multiple values "
                                            + "seperated by commas (e.g. value1,value2,value3)",
                                       font="Helvetica 16").place(x=0, y=0)
 
@@ -89,7 +89,7 @@ class SearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.SingleValuedLabel = Label(self.Window,
-                                       text="Single Valued Parameters: Input either a signle value only",
+                                       text="Single Valued Parameters: Input a single value only",
                                        font="Helvetica 16").place(x=0, y=100)
 
         # create a Label
@@ -323,7 +323,7 @@ class UpdateSearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.MultivaluedLabel = Label(self.Window,
-                                      text="Multivalued Parameters: Input either a signle value or multiple values "
+                                      text="Multivalued Parameters: Input either a single value or multiple values "
                                            + "seperated by commas (e.g. value1,value2,value3)",
                                       font="Helvetica 16").place(x=0, y=0)
 
@@ -390,7 +390,7 @@ class UpdateSearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.SingleValuedLabel = Label(self.Window,
-                                       text="Single Valued Parameters: Input either a signle value only",
+                                       text="Single Valued Parameters: Input a single value only",
                                        font="Helvetica 16").place(x=0, y=135)
 
         # create a Label
@@ -568,7 +568,7 @@ class UpdatePage:
 
         # Create category name to inform user what kind of input they should have
         self.SingleValuedLabel = Label(self.Window,
-                                       text="Single Valued Parameters: Input either a signle value only",
+                                       text="Single Valued Parameters: Input a single value only",
                                        font="Helvetica 16").place(x=0, y=0)
 
         # create a Label
