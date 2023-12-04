@@ -1089,9 +1089,22 @@ def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
     tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
     self.Window.destroy()
 
-
+def createTrigger():
+    # Creates the trigger in the user's database
+    try:
+        """
+        CREATE TRIGGER
+        """    
+    # Trigger already exists in user's database so do nothing
+    except:
+        donothing = 1
+    return
+    
 def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
-                        metacritrate, userrate, reldate, record):
+                        metacritrate, userrate, reldate, gameid):
+    """
+    Does update and calls trigger
+    """
     print("Working on it")
     tkinter.messagebox.showinfo('Update Status', "As if I know")
     self.Window.destroy()
@@ -1108,6 +1121,9 @@ data_base = mysql.connector.connect(**connection_config)
 
 # Preparing a cursor object to use throughout app
 cursor_object = data_base.cursor()
+
+# Creating the update trigger
+createTrigger()
 
 # create a GUI class object
 g = HomePage()
