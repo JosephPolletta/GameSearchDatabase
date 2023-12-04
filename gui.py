@@ -1084,6 +1084,7 @@ def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
                         " first_release_date = '"  + reldate + "'" \
                         " WHERE game_id = " + gameid                   
     
+    # TO DO: Check integrity of transaction
     cursor_object.execute(updateStatement)
     data_base.commit()
     tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
