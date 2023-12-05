@@ -22,7 +22,7 @@ class SearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.MultivaluedLabel = Label(self.Window,
-                                      text="Multivalued Parameters: Input either a signle value or multiple values "
+                                      text="Multivalued Parameters: Input either a single value or multiple values "
                                            + "seperated by commas (e.g. value1,value2,value3)",
                                       font="Helvetica 16").place(x=0, y=0)
 
@@ -89,7 +89,7 @@ class SearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.SingleValuedLabel = Label(self.Window,
-                                       text="Single Valued Parameters: Input either a signle value only",
+                                       text="Single Valued Parameters: Input a single value only",
                                        font="Helvetica 16").place(x=0, y=100)
 
         # create a Label
@@ -139,10 +139,11 @@ class SearchPage:
         n = tkinter.StringVar()
         self.MetaCombo = ttk.Combobox(self.Window,
                                       textvariable=n,
-                                      font="Helvetica 14")
+                                      font="Helvetica 14",
+                                      width=2)
 
-        self.MetaCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
+        self.MetaCombo['values'] = ('>=',
+                                    '<=')
 
         self.MetaCombo.current(0)
         self.MetaCombo.grid(row=5, column=1, padx=2, pady=2)
@@ -163,10 +164,11 @@ class SearchPage:
         n = tkinter.StringVar()
         self.UserCombo = ttk.Combobox(self.Window,
                                       textvariable=n,
-                                      font="Helvetica 14")
+                                      font="Helvetica 14",
+                                      width=2)
 
-        self.UserCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
+        self.UserCombo['values'] = ('>=',
+                                    '<=')
 
         self.UserCombo.current(0)
         self.UserCombo.grid(row=6, column=1, padx=2, pady=2)
@@ -197,7 +199,8 @@ class SearchPage:
                          command=lambda: Search(self, self.InputText1.get(), self.InputText2.get(),
                                                 self.InputText3.get(), self.InputText4.get(), self.InputText5.get(),
                                                 self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
-                                                self.InputText9.get(), self.InputText10.get(), self.InputText11.get()))
+                                                self.InputText9.get(), self.InputText10.get(), self.InputText11.get(),
+                                                self.MetaCombo.get(), self.UserCombo.get()))
 
         self.go.grid(row=8, column=0, padx=2, pady=2)
 
@@ -323,7 +326,7 @@ class UpdateSearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.MultivaluedLabel = Label(self.Window,
-                                      text="Multivalued Parameters: Input either a signle value or multiple values "
+                                      text="Multivalued Parameters: Input either a single value or multiple values "
                                            + "seperated by commas (e.g. value1,value2,value3)",
                                       font="Helvetica 16").place(x=0, y=0)
 
@@ -390,7 +393,7 @@ class UpdateSearchPage:
 
         # Create category name to inform user what kind of input they should have
         self.SingleValuedLabel = Label(self.Window,
-                                       text="Single Valued Parameters: Input either a signle value only",
+                                       text="Single Valued Parameters: Input a single value only",
                                        font="Helvetica 16").place(x=0, y=135)
 
         # create a Label
@@ -438,10 +441,11 @@ class UpdateSearchPage:
         n = tkinter.StringVar()
         self.MetaCombo = ttk.Combobox(self.Window,
                                       textvariable=n,
-                                      font="Helvetica 14")
+                                      font="Helvetica 14",
+                                      width=2)
 
-        self.MetaCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
+        self.MetaCombo['values'] = ('>=',
+                                    '<=')
 
         self.MetaCombo.current(0)
         self.MetaCombo.grid(row=7, column=1, padx=2, pady=2)
@@ -462,10 +466,11 @@ class UpdateSearchPage:
         n = tkinter.StringVar()
         self.UserCombo = ttk.Combobox(self.Window,
                                       textvariable=n,
-                                      font="Helvetica 14")
+                                      font="Helvetica 14",
+                                      width=2)
 
-        self.UserCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
+        self.UserCombo['values'] = ('>=',
+                                    '<=')
 
         self.UserCombo.current(0)
         self.UserCombo.grid(row=8, column=1, padx=2, pady=2)
@@ -493,12 +498,12 @@ class UpdateSearchPage:
                          text="Search for game to update",
                          font="Helvetica 20 bold",
                          command=lambda: SearchUpdate(self, self.InputText1.get(), self.InputText2.get(),
-                                                      self.InputText3.get(), self.InputText4.get(),
-                                                      self.InputText5.get(),
-                                                      self.InputText6.get(), self.InputText7.get(),
-                                                      self.InputText8.get(),
-                                                      self.InputText9.get(), self.InputText10.get(),
-                                                      self.InputText11.get()))
+                                                self.InputText3.get(), self.InputText4.get(),
+                                                self.InputText5.get(),
+                                                self.InputText6.get(), self.InputText7.get(),
+                                                self.InputText8.get(),
+                                                self.InputText9.get(), self.InputText10.get(),
+                                                self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get()))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -568,7 +573,7 @@ class UpdatePage:
 
         # Create category name to inform user what kind of input they should have
         self.SingleValuedLabel = Label(self.Window,
-                                       text="Single Valued Parameters: Input either a signle value only",
+                                       text="Single Valued Parameters: Input a single value only",
                                        font="Helvetica 16").place(x=0, y=0)
 
         # create a Label
@@ -579,7 +584,9 @@ class UpdatePage:
         # create a entry box for
         # typing the input
         self.InputText6 = Entry(self.Window,
-                                font="Helvetica 14")
+                                font="Helvetica 14",
+                                )
+        self.InputText6.insert(0, record[1])
 
         self.InputText6.grid(row=5, column=1, padx=2, pady=2)
 
@@ -592,6 +599,7 @@ class UpdatePage:
         # typing the input
         self.InputText7 = Entry(self.Window,
                                 font="Helvetica 14")
+        self.InputText7.insert(0, record[2])
 
         self.InputText7.grid(row=5, column=3, padx=2, pady=2)
 
@@ -605,6 +613,7 @@ class UpdatePage:
         self.InputText8 = Entry(self.Window,
                                 font="Helvetica 14")
 
+        self.InputText8.insert(0, record[4])
         self.InputText8.grid(row=6, column=1, padx=2, pady=2)
 
         # create a Label
@@ -612,48 +621,20 @@ class UpdatePage:
                                  text="Metacritic Rating: ",
                                  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
-        # create a combobox for selecting <= or >=
-        n = tkinter.StringVar()
-        self.MetaCombo = ttk.Combobox(self.Window,
-                                      textvariable=n,
-                                      font="Helvetica 14")
-
-        self.MetaCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
-
-        self.MetaCombo.current(0)
-        self.MetaCombo.grid(row=7, column=1, padx=2, pady=2)
-
-        # create a entry box for
-        # typing the input
-        self.InputText9 = Entry(self.Window,
-                                font="Helvetica 14")
-
-        self.InputText9.grid(row=7, column=2, padx=2, pady=2)
+        self.MetaRate = Entry(self.Window,
+                              font="Helvetica 14")
+        self.MetaRate.insert(0, record[5])
+        self.MetaRate.grid(row=7, column=1, padx=2, pady=2)
 
         # create a Label
         self.labelInput10 = Label(self.Window,
                                   text="User Rating: ",
                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
-        # create a combobox for selecting <= or >=
-        n = tkinter.StringVar()
-        self.UserCombo = ttk.Combobox(self.Window,
-                                      textvariable=n,
-                                      font="Helvetica 14")
-
-        self.UserCombo['values'] = ('Greater than or equal to',
-                                    'Less than or equal to')
-
-        self.UserCombo.current(0)
-        self.UserCombo.grid(row=8, column=1, padx=2, pady=2)
-
-        # create a entry box for
-        # typing the input
-        self.InputText10 = Entry(self.Window,
-                                 font="Helvetica 14")
-
-        self.InputText10.grid(row=8, column=2, padx=2, pady=2)
+        self.UserRate = Entry(self.Window,
+                              font="Helvetica 14")
+        self.UserRate.insert(0, record[6])
+        self.UserRate.grid(row=8, column=1, padx=2, pady=2)
 
         # create a Label
         self.labelInput11 = Label(self.Window,
@@ -665,18 +646,16 @@ class UpdatePage:
         self.InputText11 = Entry(self.Window,
                                  font="Helvetica 14")
         self.InputText11.grid(row=9, column=1, padx=2, pady=2)
-
+        self.InputText11.insert(0, record[3])
         # create a Search Button along with action
         self.go = Button(self.Window,
                          text="Update Record (Transaction)",
                          font="Helvetica 20 bold",
-                         command=lambda: UpdateRecord(self, self.InputText1.get(), self.InputText2.get(),
-                                                      self.InputText3.get(), self.InputText4.get(),
-                                                      self.InputText5.get(),
+                         command=lambda: UpdateRecord(self,
                                                       self.InputText6.get(), self.InputText7.get(),
                                                       self.InputText8.get(),
-                                                      self.InputText9.get(), self.InputText10.get(),
-                                                      self.InputText11.get()))
+                                                      self.MetaRate.get(), self.UserRate.get(),
+                                                      self.InputText11.get(), record[0]))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -684,13 +663,11 @@ class UpdatePage:
         self.goTrigger = Button(self.Window,
                                 text="Update Record (Trigger)",
                                 font="Helvetica 20 bold",
-                                command=lambda: UpdateRecordTrigger(self, self.InputText1.get(), self.InputText2.get(),
-                                                                    self.InputText3.get(), self.InputText4.get(),
-                                                                    self.InputText5.get(),
+                                command=lambda: UpdateRecordTrigger(self,
                                                                     self.InputText6.get(), self.InputText7.get(),
                                                                     self.InputText8.get(),
-                                                                    self.InputText9.get(), self.InputText10.get(),
-                                                                    self.InputText11.get()))
+                                                                    self.MetaRate.get(), self.UserRate.get(),
+                                                                    self.InputText11.get(), record[0]))
 
         self.goTrigger.grid(row=11, column=0, padx=2, pady=2)
 
@@ -720,7 +697,7 @@ class HomePage:
 # Functions for buttons
 
 def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
-           reldate):
+           reldate, metacompare, usercompare):
     # For now the initial statement will join all tables together and return only the useful info
     statement = """
 				SELECT distinct 
@@ -759,18 +736,18 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
             statement = statement + "ESRB_rating like '%" + esrbrate + "%'"
     if metacritrate:
         if isFirstInput == 1:
-            # greater than metacritic rating for now
-            statement = statement + " AND metacritic_rating > " + str(metacritrate)
+            # greater than or equal to
+            statement = statement + " AND metacritic_rating " + metacompare + " " + str(metacritrate)
         else:
             isFirstInput = 1
-            statement = statement + "metacritic_rating > " + str(metacritrate)
+            statement = statement + "metacritic_rating " + metacompare + " " + str(metacritrate)
     if userrate:
         if isFirstInput == 1:
             # greater than user rating for now
-            statement = statement + " AND user_rating > " + str(userrate)
+            statement = statement + " AND user_rating " + usercompare + " " + str(userrate)
         else:
             isFirstInput = 1
-            statement = statement + "user_rating > " + str(userrate)
+            statement = statement + "user_rating " + usercompare + " " + str(userrate)
     if reldate:
         if isFirstInput == 1:
             statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
@@ -869,9 +846,8 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
     self.Window.destroy()
     g = SearchResultsPage(games)
 
-
-def SearchUpdate(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate,
-                 userrate, reldate):
+def SearchUpdate(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
+           reldate, metacompare, usercompare):
     # For now the initial statement will join all tables together and return only the useful info
     statement = """
 				SELECT distinct 
@@ -910,18 +886,18 @@ def SearchUpdate(self, devname, genname, stoname, platname, parentplat, gamtitl,
             statement = statement + "ESRB_rating like '%" + esrbrate + "%'"
     if metacritrate:
         if isFirstInput == 1:
-            # greater than metacritic rating for now
-            statement = statement + " AND metacritic_rating > " + str(metacritrate)
+            # greater than or equal to
+            statement = statement + " AND metacritic_rating " + metacompare + " " + str(metacritrate)
         else:
             isFirstInput = 1
-            statement = statement + "metacritic_rating > " + str(metacritrate)
+            statement = statement + "metacritic_rating " + metacompare + " " + str(metacritrate)
     if userrate:
         if isFirstInput == 1:
             # greater than user rating for now
-            statement = statement + " AND user_rating > " + str(userrate)
+            statement = statement + " AND user_rating " + usercompare + " " + str(userrate)
         else:
             isFirstInput = 1
-            statement = statement + "user_rating > " + str(userrate)
+            statement = statement + "user_rating " + usercompare + " " + str(userrate)
     if reldate:
         if isFirstInput == 1:
             statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
@@ -1016,9 +992,9 @@ def SearchUpdate(self, devname, genname, stoname, platname, parentplat, gamtitl,
 
     cursor_object.execute(statement)
     games = cursor_object.fetchall()
+
     self.Window.destroy()
     g = SearchResultsUpdatePage(games)
-
 
 def AddToWishlist(self, records):
     # Open wishlist JSON if exists otherwise start fresh and dump to directory
@@ -1095,21 +1071,104 @@ def RemoveFromWishlist(self, totalrecords, removalrecords):
 
 
 def GrabUpdateRecord(self, record):
-    print("Working on it")
-    record = [['a', 'b']]
+    recordToUpdate = self.ResultsBox.get(record)
     self.window.destroy()
-    g = UpdatePage(record)
+    g = UpdatePage(recordToUpdate)
 
 
-def UpdateRecord(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate,
-                 userrate, reldate, record):
-    print("Working on it")
-    tkinter.messagebox.showinfo('Update Status', "As if I know")
+def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
+                 userrate, reldate, gameid):
+
+    # Calls the created transaction procedure to update with rollback check
+
+    # Translate metacritrate 'none' value into 'null' values for statement (only statement that will be null and numeric)
+    if metacritrate == 'None':
+        metacritrate = 'null'
+
+
+    updateStatement = "call TransactionUpdate('" + gamtitl + "', " + str(playtime) + ", '" + esrbrate + "', " +\
+                      str(metacritrate) + ", " + str(userrate) + ", '" + reldate + "', " + gameid + ")"
+    cursor_object.execute(updateStatement)
+
+    # Logic in python to see if update should have passed or failed
+    playtimebool = False
+    metacritbool = False
+    userbool = False
+
+    if (int(playtime) >= 0):
+        playtimebool = True
+
+    if (metacritrate != 'null'):
+        if (int(metacritrate) >= 0 & int(metacritrate) <= 100):
+            metacritbool = True
+    else:
+        metacritbool = True
+
+    if (userrate[1] == '.'):
+        if int(userrate[0]) >= 0 & int(userrate[0]) <= 4 & int(userrate[2]) >= 0 & int(userrate[2]) <= 9:
+            userbool = True
+        elif userrate == '5.0':
+            userbool = True
+
+    if (playtimebool & metacritbool == True & userbool == True):
+        tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
+    else:
+        tkinter.messagebox.showinfo('Update Status', "Update Failed!")
     self.Window.destroy()
 
+def createTransactionProcedure():
 
-def UpdateRecordTrigger(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate,
-                        metacritrate, userrate, reldate, record):
+    procedure = """
+    Delimiter //
+    CREATE PROCEDURE TransactionUpdate(
+	    new_title varchar(250),
+        new_playtime int,
+        new_ESRB varchar(45),
+        new_metascore int,
+        new_userscore decimal(3,1),
+        new_reldate varchar(45),
+        search_gameid varchar(10)
+    )
+    BEGIN
+	START TRANSACTION;
+		UPDATE game g
+        SET g.title = new_title, g.playtime = new_playtime, g.ESRB_rating = new_ESRB, g.metacritic_rating = new_metascore,
+			g.user_rating = new_userscore, g.first_release_date = new_reldate
+		WHERE g.game_id = search_gameid;
+		IF (new_playtime >= 0 and ((new_metascore >=0 and new_metascore <= 100) or new_metascore is null)
+        and new_userscore >= 0.0 and new_userscore <= 5.0)
+        THEN
+			COMMIT;
+		ELSE
+			ROLLBACK;
+        END IF;
+    END //
+    Delimiter ;
+    """
+
+    # If it fails then procedure already exists
+    try:
+        cursor_object.execute(procedure)
+    except:
+        donothing=1
+
+def createTrigger():
+    # Creates the trigger in the user's database
+    try:
+        """
+        CREATE TRIGGER
+        """
+        # Trigger already exists in user's database so do nothing
+    except:
+        donothing = 1
+    return
+
+
+def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
+                        metacritrate, userrate, reldate, gameid):
+    """
+    Does update and calls trigger
+    """
     print("Working on it")
     tkinter.messagebox.showinfo('Update Status', "As if I know")
     self.Window.destroy()
@@ -1126,6 +1185,12 @@ data_base = mysql.connector.connect(**connection_config)
 
 # Preparing a cursor object to use throughout app
 cursor_object = data_base.cursor()
+
+# Creating the update transaction procedure
+createTransactionProcedure()
+
+# Creating the update trigger
+createTrigger()
 
 # create a GUI class object
 g = HomePage()
