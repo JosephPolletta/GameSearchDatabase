@@ -142,6 +142,7 @@ class SearchPage:
                                       font="Helvetica 14",
                                       width=2)
 
+
         self.MetaCombo['values'] = ('>=',
                                     '<=')
 
@@ -200,7 +201,7 @@ class SearchPage:
                                                 self.InputText3.get(), self.InputText4.get(), self.InputText5.get(),
                                                 self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
                                                 self.InputText9.get(), self.InputText10.get(), self.InputText11.get(),
-                                                self.MetaCombo.get(), self.UserCombo.get()))
+                                                self.MetaCombo.get(), self.UserCombo.get(), 0))
 
         self.go.grid(row=8, column=0, padx=2, pady=2)
 
@@ -497,13 +498,13 @@ class UpdateSearchPage:
         self.go = Button(self.Window,
                          text="Search for game to update",
                          font="Helvetica 20 bold",
-                         command=lambda: SearchUpdate(self, self.InputText1.get(), self.InputText2.get(),
-                                                self.InputText3.get(), self.InputText4.get(),
-                                                self.InputText5.get(),
-                                                self.InputText6.get(), self.InputText7.get(),
-                                                self.InputText8.get(),
-                                                self.InputText9.get(), self.InputText10.get(),
-                                                self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get()))
+                         command=lambda: Search(self, self.InputText1.get(), self.InputText2.get(),
+                                                      self.InputText3.get(), self.InputText4.get(),
+                                                      self.InputText5.get(),
+                                                      self.InputText6.get(), self.InputText7.get(),
+                                                      self.InputText8.get(),
+                                                      self.InputText9.get(), self.InputText10.get(),
+                                                      self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get(), 1))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -623,6 +624,7 @@ class UpdatePage:
 
         self.MetaRate = Entry(self.Window,
                               font="Helvetica 14")
+        
         self.MetaRate.insert(0, record[5])
         self.MetaRate.grid(row=7, column=1, padx=2, pady=2)
 
@@ -633,6 +635,7 @@ class UpdatePage:
 
         self.UserRate = Entry(self.Window,
                               font="Helvetica 14")
+        
         self.UserRate.insert(0, record[6])
         self.UserRate.grid(row=8, column=1, padx=2, pady=2)
 
@@ -697,7 +700,7 @@ class HomePage:
 # Functions for buttons
 
 def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
-           reldate, metacompare, usercompare):
+           reldate, metacompare, usercompare, page):
     # For now the initial statement will join all tables together and return only the useful info
     statement = """
 				SELECT distinct 
@@ -844,157 +847,10 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
     games = cursor_object.fetchall()
 
     self.Window.destroy()
-    g = SearchResultsPage(games)
-
-def SearchUpdate(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
-           reldate, metacompare, usercompare):
-    # For now the initial statement will join all tables together and return only the useful info
-    statement = """
-				SELECT distinct 
-				g.game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating,
-				d.name as Developer
-				from game g join gamedeveloper gd on g.game_id = gd.game_id
-					join developer d on d.developer_id = gd.developer_id
-					join gamegenre gg on g.game_id = gg.game_id
-					join genre gen on gg.genre_id = gen.genre_id
-					join gameplatform gp on g.game_id = gp.game_id
-					join platform p on gp.platform_id = p.platform_id
-					join gameparentplatform gpp on g.game_id = gpp.game_id
-					join parentplatform pp on gpp.parentplatform_id = pp.parentplatform_id
-					join gamestore gs on g.game_id = gs.game_id
-					join store s on gs.store_id = s.store_id
-					WHERE """
-    # Variable to tell if the AND needs to be added before the string
-    isFirstInput = 0
-
-    # Single valued
-    if gamtitl:
-        isFirstInput = 1
-        statement = statement + "title like '%" + gamtitl + "%'"
-    if playtime:
-        if isFirstInput == 1:
-            # less than playtime for now
-            statement = statement + " AND playtime < " + str(playtime)
-        else:
-            isFirstInput = 1
-            statement = statement + "playtime < " + str(playtime)
-    if esrbrate:
-        if isFirstInput == 1:
-            statement = statement + " AND ESRB_rating like '%" + esrbrate + "%'"
-        else:
-            isFirstInput = 1
-            statement = statement + "ESRB_rating like '%" + esrbrate + "%'"
-    if metacritrate:
-        if isFirstInput == 1:
-            # greater than or equal to
-            statement = statement + " AND metacritic_rating " + metacompare + " " + str(metacritrate)
-        else:
-            isFirstInput = 1
-            statement = statement + "metacritic_rating " + metacompare + " " + str(metacritrate)
-    if userrate:
-        if isFirstInput == 1:
-            # greater than user rating for now
-            statement = statement + " AND user_rating " + usercompare + " " + str(userrate)
-        else:
-            isFirstInput = 1
-            statement = statement + "user_rating " + usercompare + " " + str(userrate)
-    if reldate:
-        if isFirstInput == 1:
-            statement = statement + " AND first_release_date like '%" + str(reldate) + "%'"
-        else:
-            isFirstInput = 1
-            statement = statement + "first_release_date like '%" + str(reldate) + "%'"
-    # Multivalued
-    if devname:
-        devs = devname.split(",")
-        if isFirstInput == 1:
-            statement = statement + " AND ("
-            for dev in devs:
-                statement = statement + "d.name like '%" + dev + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-        else:
-            isFirstInput = 1
-            statement = statement + "("
-            for dev in devs:
-                statement = statement + "d.name like '%" + dev + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-    if genname:
-        genres = genname.split(",")
-        if isFirstInput == 1:
-            statement = statement + " AND ("
-            for gen in genres:
-                statement = statement + "genre like '%" + gen + "%' OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-        else:
-            isFirstInput = 1
-            statement = statement + "("
-            for gen in genres:
-                statement = statement + "genre like '%" + gen + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-    if stoname:
-        stores = stoname.split(",")
-        if isFirstInput == 1:
-            statement = statement + " AND ("
-            for store in stores:
-                statement = statement + "s.name like '%" + store + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-        else:
-            isFirstInput = 1
-            statement = statement + "("
-            for store in stores:
-                statement = statement + "s.name like '%" + store + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-    if platname:
-        platforms = platname.split(",")
-        if isFirstInput == 1:
-            statement = statement + " AND ("
-            for platform in platforms:
-                statement = statement + "p.name like '%" + platform + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-        else:
-            isFirstInput = 1
-            statement = statement + "("
-            for platform in platforms:
-                statement = statement + "p.name like '%" + platform + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-    if parentplat:
-        parentplatforms = parentplat.split(",")
-        if isFirstInput == 1:
-            statement = statement + " AND ("
-            for parentplatform in parentplatforms:
-                statement = statement + "pp.name like '%" + parentplatform + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-        else:
-            isFirstInput = 1
-            statement = statement + "("
-            for parentplatform in parentplatforms:
-                statement = statement + "pp.name like '%" + parentplatform + "%' OR "
-            # Splicing to get rid of the extra " OR "
-            statement = statement[:-4]
-            statement = statement + ")"
-
-    cursor_object.execute(statement)
-    games = cursor_object.fetchall()
-
-    self.Window.destroy()
-    g = SearchResultsUpdatePage(games)
+    if page == 0:
+        g = SearchResultsPage(games)
+    else:
+        g = SearchResultsUpdatePage(games)
 
 def AddToWishlist(self, records):
     # Open wishlist JSON if exists otherwise start fresh and dump to directory
@@ -1151,18 +1007,17 @@ def createTransactionProcedure():
         cursor_object.execute(procedure)
     except:
         donothing=1
-
+        
 def createTrigger():
     # Creates the trigger in the user's database
     try:
         """
         CREATE TRIGGER
         """
-        # Trigger already exists in user's database so do nothing
+    # Trigger already exists in user's database so do nothing
     except:
         donothing = 1
     return
-
 
 def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
                         metacritrate, userrate, reldate, gameid):

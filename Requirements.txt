@@ -1,0 +1,22 @@
+To be able to run our database application you'll need:
+
+MySQL Community Version 8.0.35 or higher
+Helpful video: https://www.youtube.com/watch?v=u96rVINbAUI
+The installer for your operating system/machine can be located at https://dev.mysql.com/downloads/
+After downloading the installer, run the installer and when prompted for a Setup Type choose "Full" (or "Developer Default" if it is available)
+Follow the prompts from the installer leaving install settings as their defaults
+Once installing MySQL Server, in "Type and Networking" ensure that the Config Type is set to "Development Computer"
+Near the end of the setup process you will be prompted to create a root account. This will be the account you use to login so remember your username (default is root) and password!
+During configuration of MySQL Server ensure that on "Windows Service" the box "Start the MySQL Server at System Startup" is checked 
+Once the installation is complete, open your MySQL workbench and double left click on the "Local instance MySQL80" under the "MySQL Connections"
+Log in using your password from earlier and you should be all set to user MySQL!
+
+An installation of Python
+Ensure that your installation of Python also has the needed libraries. These can be installed by running these commands into your command prompt
+pip install tk
+pip install python-connector-mysql
+
+A code editor equipped to handle python code (Pycharm, Visual Studio Code, etc.)
+Choose your favorite :)
+
+
