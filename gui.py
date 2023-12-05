@@ -140,7 +140,8 @@ class SearchPage:
         self.MetaCombo = ttk.Combobox(self.Window,
                                       textvariable=n,
                                       font="Helvetica 14",
-                                      width= 2)
+                                      width=2)
+
 
         self.MetaCombo['values'] = ('>=',
                                     '<=')
@@ -600,7 +601,7 @@ class UpdatePage:
         self.InputText7 = Entry(self.Window,
                                 font="Helvetica 14")
         self.InputText7.insert(0, record[2])
-        
+
         self.InputText7.grid(row=5, column=3, padx=2, pady=2)
 
         # create a Label
@@ -622,7 +623,8 @@ class UpdatePage:
                                  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
         self.MetaRate = Entry(self.Window,
-                                font="Helvetica 14")
+                              font="Helvetica 14")
+        
         self.MetaRate.insert(0, record[5])
         self.MetaRate.grid(row=7, column=1, padx=2, pady=2)
 
@@ -632,7 +634,8 @@ class UpdatePage:
                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
         self.UserRate = Entry(self.Window,
-                                font="Helvetica 14")
+                              font="Helvetica 14")
+        
         self.UserRate.insert(0, record[6])
         self.UserRate.grid(row=8, column=1, padx=2, pady=2)
 
@@ -931,33 +934,91 @@ def GrabUpdateRecord(self, record):
 
 def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
                  userrate, reldate, gameid):
-  
-    updateStatement =    "UPDATE game g" \
-                        " SET title = '" + gamtitl + "'," \
-                        " playtime = '" + playtime + "'," \
-                        " ESRB_rating = '" + esrbrate + "'," \
-                        " metacritic_rating = '" + metacritrate + "',"\
-                        " user_rating = '" + userrate + "'," \
-                        " first_release_date = '"  + reldate + "'" \
-                        " WHERE game_id = " + gameid                   
-    
-    # TO DO: Check integrity of transaction
+
+    # Calls the created transaction procedure to update with rollback check
+
+    # Translate metacritrate 'none' value into 'null' values for statement (only statement that will be null and numeric)
+    if metacritrate == 'None':
+        metacritrate = 'null'
+
+
+    updateStatement = "call TransactionUpdate('" + gamtitl + "', " + str(playtime) + ", '" + esrbrate + "', " +\
+                      str(metacritrate) + ", " + str(userrate) + ", '" + reldate + "', " + gameid + ")"
     cursor_object.execute(updateStatement)
-    data_base.commit()
-    tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
+
+    # Logic in python to see if update should have passed or failed
+    playtimebool = False
+    metacritbool = False
+    userbool = False
+
+    if (int(playtime) >= 0):
+        playtimebool = True
+
+    if (metacritrate != 'null'):
+        if (int(metacritrate) >= 0 & int(metacritrate) <= 100):
+            metacritbool = True
+    else:
+        metacritbool = True
+
+    if (userrate[1] == '.'):
+        if int(userrate[0]) >= 0 & int(userrate[0]) <= 4 & int(userrate[2]) >= 0 & int(userrate[2]) <= 9:
+            userbool = True
+        elif userrate == '5.0':
+            userbool = True
+
+    if (playtimebool & metacritbool == True & userbool == True):
+        tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
+    else:
+        tkinter.messagebox.showinfo('Update Status', "Update Failed!")
     self.Window.destroy()
 
+def createTransactionProcedure():
+
+    procedure = """
+    Delimiter //
+    CREATE PROCEDURE TransactionUpdate(
+	    new_title varchar(250),
+        new_playtime int,
+        new_ESRB varchar(45),
+        new_metascore int,
+        new_userscore decimal(3,1),
+        new_reldate varchar(45),
+        search_gameid varchar(10)
+    )
+    BEGIN
+	START TRANSACTION;
+		UPDATE game g
+        SET g.title = new_title, g.playtime = new_playtime, g.ESRB_rating = new_ESRB, g.metacritic_rating = new_metascore,
+			g.user_rating = new_userscore, g.first_release_date = new_reldate
+		WHERE g.game_id = search_gameid;
+		IF (new_playtime >= 0 and ((new_metascore >=0 and new_metascore <= 100) or new_metascore is null)
+        and new_userscore >= 0.0 and new_userscore <= 5.0)
+        THEN
+			COMMIT;
+		ELSE
+			ROLLBACK;
+        END IF;
+    END //
+    Delimiter ;
+    """
+
+    # If it fails then procedure already exists
+    try:
+        cursor_object.execute(procedure)
+    except:
+        donothing=1
+        
 def createTrigger():
     # Creates the trigger in the user's database
     try:
         """
         CREATE TRIGGER
-        """    
+        """
     # Trigger already exists in user's database so do nothing
     except:
         donothing = 1
     return
-    
+
 def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
                         metacritrate, userrate, reldate, gameid):
     """
@@ -979,6 +1040,9 @@ data_base = mysql.connector.connect(**connection_config)
 
 # Preparing a cursor object to use throughout app
 cursor_object = data_base.cursor()
+
+# Creating the update transaction procedure
+createTransactionProcedure()
 
 # Creating the update trigger
 createTrigger()
