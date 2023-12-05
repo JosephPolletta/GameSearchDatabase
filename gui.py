@@ -200,7 +200,7 @@ class SearchPage:
                                                 self.InputText3.get(), self.InputText4.get(), self.InputText5.get(),
                                                 self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
                                                 self.InputText9.get(), self.InputText10.get(), self.InputText11.get(),
-                                                self.MetaCombo.get(), self.UserCombo.get()))
+                                                self.MetaCombo.get(), self.UserCombo.get(), 0))
 
         self.go.grid(row=8, column=0, padx=2, pady=2)
 
@@ -503,7 +503,7 @@ class UpdateSearchPage:
                                                       self.InputText6.get(), self.InputText7.get(),
                                                       self.InputText8.get(),
                                                       self.InputText9.get(), self.InputText10.get(),
-                                                      self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get()))
+                                                      self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get(), 1))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -697,7 +697,7 @@ class HomePage:
 # Functions for buttons
 
 def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
-           reldate, metacompare, usercompare):
+           reldate, metacompare, usercompare, page):
     # For now the initial statement will join all tables together and return only the useful info
     statement = """
 				SELECT distinct 
@@ -844,7 +844,10 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
     games = cursor_object.fetchall()
 
     self.Window.destroy()
-    g = SearchResultsPage(games)
+    if page == 0:
+        g = SearchResultsPage(games)
+    else:
+        g = SearchResultsUpdatePage(games)
 
 def AddToWishlist(self, records):
     # Open wishlist JSON if exists otherwise start fresh and dump to directory
