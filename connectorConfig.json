@@ -1,8 +1,0 @@
-{
-  "mysql": {
-    "host": "localhost",
-    "user": "root",
-    "passwd": "Cutcutler2464",
-    "db": "games"
-  }
-}
