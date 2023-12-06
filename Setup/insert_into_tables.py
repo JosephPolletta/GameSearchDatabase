@@ -4,7 +4,6 @@ Python file to insert all of the data into the created tables
 
 """
 # Any needed imports
-import csv
 import os
 import mysql.connector
 import json
@@ -36,6 +35,7 @@ dev_list = []
 files = os.listdir(path_to_games)
 files.sort(reverse=True)
 
+
 # Method to insert null values so that foreign key errors don't occur
 def nullInserts():
     cursor_object.execute("INSERT INTO games." + "platform" + " (platform_id, name)"
@@ -48,10 +48,11 @@ def nullInserts():
                                                            "values (%s, %s)", ("NULL", "No genre"))
     return
 
+
 # Procedure to update developer null values
 def createUpdateProcedure():
     # The MySQL code to create the procedure
-    procedure =  """
+    procedure = """
                 CREATE PROCEDURE `updateDeveloper` (target_dev_id varchar(10), new_name varchar(75), new_game_count INT)
                 BEGIN
                 UPDATE games.developer
@@ -60,12 +61,13 @@ def createUpdateProcedure():
                 END
                 """
     cursor_object.execute(procedure)
-    
+
     return
+
 
 try:
     createUpdateProcedure()
-except:
+except Exception:
     dummy = 1
 
 nullInserts()
@@ -85,16 +87,15 @@ for json_file in files:
                 game_title = game["name"]
                 playtime = game["playtime"]
                 first_release_date = game["released"]
-                if (game["esrb_rating"] == None):
+                if (game["esrb_rating"] is None):
                     ESRB_rating = None
                 else:
                     ESRB_rating = game["esrb_rating"]["name"]
                 metacritic_rating = game["metacritic"]
                 user_rating = game["rating"]
 
-                game_tuple = (
-                game_id, game_title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating)
-                
+                game_tuple = (game_id, game_title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating)
+
                 cursor_object.execute(
                     "INSERT INTO games." + "game" + " (game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating)"
                                                     "values (%s, %s,%s, %s,%s, %s, %s)", (game_tuple))
@@ -117,7 +118,7 @@ for json_file in files:
                                                                                "values (%s, %s)", (gamegenre_tuple))
 
                 # Insertion into platform and gameplatform table
-                if game["platforms"] == None:
+                if game["platforms"] is None:
                     cursor_object.execute("INSERT INTO games." + "gameplatform" + " (game_id, platform_id)"
                                                                                   "values (%s, %s)", (game_id, "NULL"))
                 else:
@@ -139,7 +140,7 @@ for json_file in files:
                                               (gameplatform_tuple))
 
                 # Insertion into parentplatform and gameParentPlatform table
-                if game["platforms"] == None:
+                if game["platforms"] is None:
                     cursor_object.execute("INSERT INTO games." + "gameparentplatform" + " (game_id, parentplatform_id)"
                                                                                         "values (%s, %s)",
                                           (game_id, "NULL"))
@@ -162,7 +163,7 @@ for json_file in files:
                                                                           "values (%s, %s)", (gameparentplatform_tuple))
 
                         # Insertion into store and gamestore table
-                if game["stores"] == None:
+                if game["stores"] is None:
                     cursor_object.execute("INSERT INTO games." + "gamestore" + " (game_id, store_id)"
                                                                                "values (%s, %s)", (game_id, "NULL"))
                 else:
@@ -181,22 +182,18 @@ for json_file in files:
                         cursor_object.execute("INSERT INTO games." + "gamestore" + " (game_id, store_id)"
                                                                                    "values (%s, %s)", (gamestore_tuple))
 
-                
                 # Insert value into dev table
                 dev_id = data["d_id"]
                 if dev_id not in dev_list:
                     dev_list.append(dev_id)
                     cursor_object.execute("INSERT INTO games." + "developer" + " (developer_id, name, game_count)"
-                                                                        "values (%s, %s, %s)", (dev_id, None, None))
-                
-                # Insertion into gamedeveloper table  
+                                          "values (%s, %s, %s)", (dev_id, None, None))
+
+                # Insertion into gamedeveloper table
                 gamedev_tuple = (game_id, dev_id)
                 cursor_object.execute(
                     "INSERT INTO games." + "gamedeveloper" + " (game_id, developer_id)"
                                                              "values (%s, %s)", (gamedev_tuple))
-
-
-
 
     # For the dev JSONS
     else:
@@ -208,8 +205,8 @@ for json_file in files:
             dev_tuple = (dev_id, dev_name, dev_gamescount)
             if dev_id not in dev_list:
                 cursor_object.execute("INSERT INTO games." + "developer" + " (developer_id, name, game_count)"
-                                                                        "values (%s, %s, %s)", (dev_tuple))
-            else: 
+                                      "values (%s, %s, %s)", (dev_tuple))
+            else:
                 args = [dev_id, dev_name, dev_gamescount]
                 cursor_object.callproc("updateDeveloper", args=args)
 
