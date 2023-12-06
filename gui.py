@@ -26,62 +26,62 @@ class SearchPage:
                                       font="Helvetica 16").place(x=0, y=0)
 
         # create a Label
-        self.labelInput1 = Label(self.Window,
+        self.devLabel = Label(self.Window,
                                  text="Developer Name(s): ",
                                  font="Helvetica 12").grid(row=1, column=0, padx=2, pady=2)
 
         # create a entry box for typing the input
-        self.InputText1 = Entry(self.Window,
+        self.devInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText1.grid(row=1, column=1, padx=2, pady=2)
+        self.devInput.grid(row=1, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput2 = Label(self.Window,
+        self.genreLabel = Label(self.Window,
                                  text="Genre Name(s): ",
                                  font="Helvetica 12").grid(row=1, column=2, padx=2, pady=2)
 
         # create a entry box for typing the input
-        self.InputText2 = Entry(self.Window,
+        self.genreInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText2.grid(row=1, column=3, padx=2, pady=2)
+        self.genreInput.grid(row=1, column=3, padx=2, pady=2)
 
         # create a Label
-        self.labelInput3 = Label(self.Window,
+        self.storeLabel = Label(self.Window,
                                  text="Store Name(s): ",
                                  font="Helvetica 12").grid(row=1, column=4, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText3 = Entry(self.Window,
+        self.storeInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText3.grid(row=1, column=5, padx=2, pady=2)
+        self.storeInput.grid(row=1, column=5, padx=2, pady=2)
 
         # create a Label
-        self.labelInput4 = Label(self.Window,
+        self.platformLabel = Label(self.Window,
                                  text="Platform Name(s): ",
                                  font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText4 = Entry(self.Window,
+        self.platformInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText4.grid(row=2, column=1, padx=2, pady=2)
+        self.platformInput.grid(row=2, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput5 = Label(self.Window,
+        self.parentplatformLabel = Label(self.Window,
                                  text="Parent Platform(s): ",
                                  font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText5 = Entry(self.Window,
+        self.parentplatformInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText5.grid(row=2, column=3, padx=2, pady=2)
+        self.parentplatformInput.grid(row=2, column=3, padx=2, pady=2)
 
         # Place spacer before category label so category label covers it
         self.Spacer1 = Label(self.Window).grid(row=3, column=0, padx=2, pady=10)
@@ -92,45 +92,45 @@ class SearchPage:
                                        font="Helvetica 16").place(x=0, y=100)
 
         # create a Label
-        self.labelInput6 = Label(self.Window,
+        self.gametitleLabel = Label(self.Window,
                                  text="Game Title: ",
                                  font="Helvetica 12").grid(row=4, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText6 = Entry(self.Window,
+        self.gametitleInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText6.grid(row=4, column=1, padx=2, pady=2)
+        self.gametitleInput.grid(row=4, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput7 = Label(self.Window,
+        self.playtimeLabel = Label(self.Window,
                                  text="Playtime: ",
                                  font="Helvetica 12").grid(row=4, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText7 = Entry(self.Window,
+        self.playtimeInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText7.grid(row=4, column=3, padx=2, pady=2)
+        self.playtimeInput.grid(row=4, column=3, padx=2, pady=2)
 
         # create a Label
-        self.labelInput8 = Label(self.Window,
+        self.ESRBLabel = Label(self.Window,
                                  text="ESRB Rating: ",
                                  font="Helvetica 12").grid(row=4, column=4, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText8 = Entry(self.Window,
+        self.ESRBRatingInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText8.grid(row=4, column=5, padx=2, pady=2)
+        self.ESRBRatingInput.grid(row=4, column=5, padx=2, pady=2)
 
-        self.InputText8.grid(row=4, column=5, padx=2, pady=2)
+        self.ESRBRatingInput.grid(row=4, column=5, padx=2, pady=2)
 
         # create a Label
-        self.labelInput9 = Label(self.Window,
+        self.metacriticLabel = Label(self.Window,
                                  text="Metacritic Rating: ",
                                  font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
@@ -149,13 +149,13 @@ class SearchPage:
 
         # create a entry box for
         # typing the input
-        self.InputText9 = Entry(self.Window,
+        self.metacriticInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText9.grid(row=5, column=2, padx=2, pady=2)
+        self.metacriticInput.grid(row=5, column=2, padx=2, pady=2)
 
         # create a Label
-        self.labelInput10 = Label(self.Window,
+        self.userrateLabel = Label(self.Window,
                                   text="User Rating: ",
                                   font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
 
@@ -174,31 +174,31 @@ class SearchPage:
 
         # create a entry box for
         # typing the input
-        self.InputText10 = Entry(self.Window,
+        self.userrateInput = Entry(self.Window,
                                  font="Helvetica 14")
 
-        self.InputText10.grid(row=6, column=2, padx=2, pady=2)
+        self.userrateInput.grid(row=6, column=2, padx=2, pady=2)
 
         # create a Label
-        self.labelInput11 = Label(self.Window,
+        self.releasedateLabel = Label(self.Window,
                                   text="Release Date: ",
                                   font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText11 = Entry(self.Window,
+        self.releasedateInput = Entry(self.Window,
                                  font="Helvetica 14")
 
-        self.InputText11.grid(row=7, column=1, padx=2, pady=2)
+        self.releasedateInput.grid(row=7, column=1, padx=2, pady=2)
 
         # create a Search Button along with action
         self.go = Button(self.Window,
                          text="Search",
                          font="Helvetica 20 bold",
-                         command=lambda: Search(self, self.InputText1.get(), self.InputText2.get(),
-                                                self.InputText3.get(), self.InputText4.get(), self.InputText5.get(),
-                                                self.InputText6.get(), self.InputText7.get(), self.InputText8.get(),
-                                                self.InputText9.get(), self.InputText10.get(), self.InputText11.get(),
+                         command=lambda: Search(self, self.devInput.get(), self.genreInput.get(),
+                                                self.storeInput.get(), self.platformInput.get(), self.parentplatformInput.get(),
+                                                self.gametitleInput.get(), self.playtimeInput.get(), self.ESRBRatingInput.get(),
+                                                self.metacriticInput.get(), self.userrateInput.get(), self.releasedateInput.get(),
                                                 self.MetaCombo.get(), self.UserCombo.get(), 0))
 
         self.go.grid(row=8, column=0, padx=2, pady=2)
@@ -331,62 +331,62 @@ class UpdateSearchPage:
                                       font="Helvetica 16").place(x=0, y=0)
 
         # create a Label
-        self.labelInput1 = Label(self.Window,
+        self.devLabel = Label(self.Window,
                                  text="Developer Name(s): ",
                                  font="Helvetica 12").grid(row=1, column=0, padx=2, pady=2)
 
         # create a entry box for typing the input
-        self.InputText1 = Entry(self.Window,
+        self.devInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText1.grid(row=1, column=1, padx=2, pady=2)
+        self.devInput.grid(row=1, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput2 = Label(self.Window,
+        self.genreLabel = Label(self.Window,
                                  text="Genre Name(s): ",
                                  font="Helvetica 12").grid(row=1, column=2, padx=2, pady=2)
 
         # create a entry box for typing the input
-        self.InputText2 = Entry(self.Window,
+        self.genreInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText2.grid(row=1, column=3, padx=2, pady=2)
+        self.genreInput.grid(row=1, column=3, padx=2, pady=2)
 
         # create a Label
-        self.labelInput3 = Label(self.Window,
+        self.storeLabel = Label(self.Window,
                                  text="Store Name(s): ",
                                  font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText3 = Entry(self.Window,
+        self.storeInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText3.grid(row=2, column=1, padx=2, pady=2)
+        self.storeInput.grid(row=2, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput4 = Label(self.Window,
+        self.platformLabel = Label(self.Window,
                                  text="Platform Name(s): ",
                                  font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText4 = Entry(self.Window,
+        self.platformInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText4.grid(row=2, column=3, padx=2, pady=2)
+        self.platformInput.grid(row=2, column=3, padx=2, pady=2)
 
         # create a Label
-        self.labelInput5 = Label(self.Window,
+        self.parentplatformLabel = Label(self.Window,
                                  text="Parent Platform(s): ",
                                  font="Helvetica 12").grid(row=3, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText5 = Entry(self.Window,
+        self.parentplatformInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText5.grid(row=3, column=1, padx=2, pady=2)
+        self.parentplatformInput.grid(row=3, column=1, padx=2, pady=2)
 
         # Place spacer before category label so category label covers it
         self.Spacer1 = Label(self.Window).grid(row=4, column=0, padx=2, pady=10)
@@ -397,43 +397,43 @@ class UpdateSearchPage:
                                        font="Helvetica 16").place(x=0, y=135)
 
         # create a Label
-        self.labelInput6 = Label(self.Window,
+        self.gametitleLabel = Label(self.Window,
                                  text="Game Title: ",
                                  font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText6 = Entry(self.Window,
+        self.gametitleInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText6.grid(row=5, column=1, padx=2, pady=2)
+        self.gametitleInput.grid(row=5, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput7 = Label(self.Window,
+        self.playtimeLabel = Label(self.Window,
                                  text="Playtime: ",
                                  font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText7 = Entry(self.Window,
+        self.playtimeInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText7.grid(row=5, column=3, padx=2, pady=2)
+        self.playtimeInput.grid(row=5, column=3, padx=2, pady=2)
 
         # create a Label
-        self.labelInput8 = Label(self.Window,
+        self.ESRBLabel = Label(self.Window,
                                  text="ESRB Rating: ",
                                  font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText8 = Entry(self.Window,
+        self.ESRBRatingInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText8.grid(row=6, column=1, padx=2, pady=2)
+        self.ESRBRatingInput.grid(row=6, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput9 = Label(self.Window,
+        self.metacriticLabel = Label(self.Window,
                                  text="Metacritic Rating: ",
                                  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
@@ -452,13 +452,13 @@ class UpdateSearchPage:
 
         # create a entry box for
         # typing the input
-        self.InputText9 = Entry(self.Window,
+        self.metacriticInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText9.grid(row=7, column=2, padx=2, pady=2)
+        self.metacriticInput.grid(row=7, column=2, padx=2, pady=2)
 
         # create a Label
-        self.labelInput10 = Label(self.Window,
+        self.userrateLabel = Label(self.Window,
                                   text="User Rating: ",
                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
@@ -477,33 +477,33 @@ class UpdateSearchPage:
 
         # create a entry box for
         # typing the input
-        self.InputText10 = Entry(self.Window,
+        self.userrateInput = Entry(self.Window,
                                  font="Helvetica 14")
 
-        self.InputText10.grid(row=8, column=2, padx=2, pady=2)
+        self.userrateInput.grid(row=8, column=2, padx=2, pady=2)
 
         # create a Label
-        self.labelInput11 = Label(self.Window,
+        self.releasedateLabel = Label(self.Window,
                                   text="Release Date: ",
                                   font="Helvetica 12").grid(row=9, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText11 = Entry(self.Window,
+        self.releasedateInput = Entry(self.Window,
                                  font="Helvetica 14")
-        self.InputText11.grid(row=9, column=1, padx=2, pady=2)
+        self.releasedateInput.grid(row=9, column=1, padx=2, pady=2)
 
         # create a Search Button along with action
         self.go = Button(self.Window,
                          text="Search for game to update",
                          font="Helvetica 20 bold",
-                         command=lambda: Search(self, self.InputText1.get(), self.InputText2.get(),
-                                                self.InputText3.get(), self.InputText4.get(),
-                                                self.InputText5.get(),
-                                                self.InputText6.get(), self.InputText7.get(),
-                                                self.InputText8.get(),
-                                                self.InputText9.get(), self.InputText10.get(),
-                                                self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get(), 1))
+                         command=lambda: Search(self, self.devInput.get(), self.genreInput.get(),
+                                                self.storeInput.get(), self.platformInput.get(),
+                                                self.parentplatformInput.get(),
+                                                self.gametitleInput.get(), self.playtimeInput.get(),
+                                                self.ESRBRatingInput.get(),
+                                                self.metacriticInput.get(), self.userrateInput.get(),
+                                                self.releasedateInput.get(), self.MetaCombo.get(), self.UserCombo.get(), 1))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -578,47 +578,47 @@ class UpdatePage:
                                        font="Helvetica 16").place(x=0, y=0)
 
         # create a Label
-        self.labelInput6 = Label(self.Window,
+        self.gametitleLabel = Label(self.Window,
                                  text="Game Title: ",
                                  font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText6 = Entry(self.Window,
+        self.gametitleInput = Entry(self.Window,
                                 font="Helvetica 14",
                                 )
-        self.InputText6.insert(0, record['values'][1])
+        self.gametitleInput.insert(0, record['values'][1])
 
-        self.InputText6.grid(row=5, column=1, padx=2, pady=2)
+        self.gametitleInput.grid(row=5, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput7 = Label(self.Window,
+        self.playtimeLabel = Label(self.Window,
                                  text="Playtime: ",
                                  font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText7 = Entry(self.Window,
+        self.playtimeInput = Entry(self.Window,
                                 font="Helvetica 14")
-        self.InputText7.insert(0, record['values'][2])
+        self.playtimeInput.insert(0, record['values'][2])
 
-        self.InputText7.grid(row=5, column=3, padx=2, pady=2)
+        self.playtimeInput.grid(row=5, column=3, padx=2, pady=2)
 
         # create a Label
-        self.labelInput8 = Label(self.Window,
+        self.ESRBLabel = Label(self.Window,
                                  text="ESRB Rating: ",
                                  font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText8 = Entry(self.Window,
+        self.ESRBRatingInput = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText8.insert(0, record['values'][4])
-        self.InputText8.grid(row=6, column=1, padx=2, pady=2)
+        self.ESRBRatingInput.insert(0, record['values'][4])
+        self.ESRBRatingInput.grid(row=6, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput9 = Label(self.Window,
+        self.metacriticLabel = Label(self.Window,
                                  text="Metacritic Rating: ",
                                  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
@@ -629,8 +629,8 @@ class UpdatePage:
         self.MetaRate.grid(row=7, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput10 = Label(self.Window,
-                                  text="User Rating: ",
+        self.userrateLabel = Label(self.Window,
+                                  text="User Rating: (%.%)",
                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
         self.UserRate = Entry(self.Window,
@@ -640,26 +640,26 @@ class UpdatePage:
         self.UserRate.grid(row=8, column=1, padx=2, pady=2)
 
         # create a Label
-        self.labelInput11 = Label(self.Window,
+        self.releasedateLabel = Label(self.Window,
                                   text="Release Date: ",
                                   font="Helvetica 12").grid(row=9, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
-        self.InputText11 = Entry(self.Window,
+        self.releasedateInput = Entry(self.Window,
                                  font="Helvetica 14")
-        self.InputText11.grid(row=9, column=1, padx=2, pady=2)
-        self.InputText11.insert(0, record['values'][3])
+        self.releasedateInput.grid(row=9, column=1, padx=2, pady=2)
+        self.releasedateInput.insert(0, record['values'][3])
 
         # create a Search Button along with action
         self.go = Button(self.Window,
                          text="Update Record (Transaction)",
                          font="Helvetica 20 bold",
                          command=lambda: UpdateRecord(self,
-                                                      self.InputText6.get(), self.InputText7.get(),
-                                                      self.InputText8.get(),
+                                                      self.gametitleInput.get(), self.playtimeInput.get(),
+                                                      self.ESRBRatingInput.get(),
                                                       self.MetaRate.get(), self.UserRate.get(),
-                                                      self.InputText11.get(), record['values'][0]))
+                                                      self.releasedateInput.get(), record['values'][0]))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -668,10 +668,10 @@ class UpdatePage:
                                 text="Update Record (Trigger)",
                                 font="Helvetica 20 bold",
                                 command=lambda: UpdateRecordTrigger(self,
-                                                                    self.InputText6.get(), self.InputText7.get(),
-                                                                    self.InputText8.get(),
+                                                                    self.gametitleInput.get(), self.playtimeInput.get(),
+                                                                    self.ESRBRatingInput.get(),
                                                                     self.MetaRate.get(), self.UserRate.get(),
-                                                                    self.InputText11.get(), record['values'][0]))
+                                                                    self.releasedateInput.get(), record['values'][0]))
 
         self.goTrigger.grid(row=11, column=0, padx=2, pady=2)
 
@@ -702,7 +702,7 @@ class HomePage:
 
 def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
            reldate, metacompare, usercompare, page):
-    # For now the initial statement will join all tables together and return only the useful info
+    # Initial statement will join all tables together and return only the useful info
     statement = """
                                 SELECT distinct
                                 g.game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating,
@@ -718,7 +718,7 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
                                         join gamestore gs on g.game_id = gs.game_id
                                         join store s on gs.store_id = s.store_id
                                         WHERE """
-    # Variable to tell if the AND needs to be added before the string
+    # Variable to tell if there has been any input
     isFirstInput = 0
 
     # Single valued
@@ -727,11 +727,10 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
         statement = statement + "title like '%" + gamtitl + "%'"
     if playtime:
         if isFirstInput == 1:
-            # less than playtime for now
-            statement = statement + " AND playtime < " + str(playtime)
+            statement = statement + " AND playtime = " + str(playtime)
         else:
             isFirstInput = 1
-            statement = statement + "playtime < " + str(playtime)
+            statement = statement + "playtime = " + str(playtime)
     if esrbrate:
         if isFirstInput == 1:
             statement = statement + " AND ESRB_rating like '%" + esrbrate + "%'"
@@ -740,14 +739,12 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
             statement = statement + "ESRB_rating like '%" + esrbrate + "%'"
     if metacritrate:
         if isFirstInput == 1:
-            # greater than or equal to
             statement = statement + " AND metacritic_rating " + metacompare + " " + str(metacritrate)
         else:
             isFirstInput = 1
             statement = statement + "metacritic_rating " + metacompare + " " + str(metacritrate)
     if userrate:
         if isFirstInput == 1:
-            # greater than user rating for now
             statement = statement + " AND user_rating " + usercompare + " " + str(userrate)
         else:
             isFirstInput = 1
@@ -782,6 +779,7 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
             statement = statement + " AND ("
             for gen in genres:
                 statement = statement + "genre like '%" + gen + "%' OR "
+            # Splicing to get rid of the extra " OR "
             statement = statement[:-4]
             statement = statement + ")"
         else:
@@ -843,6 +841,11 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
             # Splicing to get rid of the extra " OR "
             statement = statement[:-4]
             statement = statement + ")"
+
+    # If there was no input from the user before hitting the search button, it will do a default search for the first 100 records
+    if isFirstInput == 0:
+        statement = statement[:-6]
+        statement += "LIMIT 100"
 
     cursor_object.execute(statement)
     games = cursor_object.fetchall()
