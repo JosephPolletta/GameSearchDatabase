@@ -100,7 +100,7 @@ CREATE TABLE platform (
 )
 """
 
-# Games exist on platforms 
+# Games exist on platforms
 game_platform_table = """
 CREATE TABLE gamePlatform (
     game_id varchar(10) NOT null,
@@ -128,7 +128,6 @@ CREATE TABLE gameParentPlatform (
 )
 """
 
-lst_table_descriptions = [game_table,genre_table,ghg_table,developer_table,ddg_table,store_table,game_store_table,platform_table,game_platform_table,parentplatform_table, game_parentplatform_table]
+lst_table_descriptions = [game_table, genre_table, ghg_table, developer_table, ddg_table, store_table, game_store_table, platform_table, game_platform_table, parentplatform_table, game_parentplatform_table]
 
 create_table(config_file="connectorConfig.json", lst_table_descriptions=lst_table_descriptions)
-
