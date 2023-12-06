@@ -219,17 +219,17 @@ class SearchResultsPage:
         self.VerticalScroll = Scrollbar(self.window)
 
         self.ResultsBox = ttk.Treeview(self.window,
-                                        show='headings',
-                                        xscrollcommand=self.HorizontalScroll.set,
-                                        yscrollcommand=self.VerticalScroll.set)
+                                       show='headings',
+                                       xscrollcommand=self.HorizontalScroll.set,
+                                       yscrollcommand=self.VerticalScroll.set)
 
         self.HorizontalScroll.config(command=self.ResultsBox.xview())
         self.VerticalScroll.config(command=self.ResultsBox.yview())
 
         self.ResultsBox['columns'] = ('Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
-                                   'User Rating', 'Developer')
+                                      'User Rating', 'Developer')
 
-        for col in self.ResultsBox['columns'] :
+        for col in self.ResultsBox['columns']:
             self.ResultsBox.heading(col, text=col)
             self.ResultsBox.column(col, width=120, minwidth=120, anchor="w")
 
@@ -276,8 +276,8 @@ class WishlistPage:
         self.VerticalScroll.config(command=self.WishlistBox.yview())
 
         self.WishlistBox['columns'] = (
-        'Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
-        'User Rating', 'Developer')
+                                      'Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
+                                      'User Rating', 'Developer')
 
         for col in self.WishlistBox['columns']:
             self.WishlistBox.heading(col, text=col)
@@ -532,8 +532,8 @@ class SearchResultsUpdatePage:
         self.VerticalScroll.config(command=self.ResultsBox.yview())
 
         self.ResultsBox['columns'] = (
-        'Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
-        'User Rating', 'Developer')
+                                      'Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
+                                      'User Rating', 'Developer')
 
         for col in self.ResultsBox['columns']:
             self.ResultsBox.heading(col, text=col)
@@ -551,11 +551,11 @@ class SearchResultsUpdatePage:
                                   font="Helvetica 16").pack()
 
         self.SelectButton = Button(self.window,
-                                     text="Select record",
-                                     font="Helvetica 10 bold",
-                                     command=lambda: GrabUpdateRecord(self, self.ResultsBox.selection()),
-                                     width=20,
-                                     height=2).pack()
+                                   text="Select record",
+                                   font="Helvetica 10 bold",
+                                   command=lambda: GrabUpdateRecord(self, self.ResultsBox.selection()),
+                                   width=20,
+                                   height=2).pack()
 
         self.window.mainloop()
 
@@ -1021,12 +1021,12 @@ def createTrigger():
         AFTER UPDATE ON game
         FOR EACH ROW
         BEGIN
-	        IF not (new.playtime >= 0 and ((new.metacritic_rating >=0 and new.metacritic_rating <= 100) or new.metacritic_rating is null)
+                IF not (new.playtime >= 0 and ((new.metacritic_rating >=0 and new.metacritic_rating <= 100) or new.metacritic_rating is null)
                 and new.user_rating >= 0.0 and new.user_rating <= 5.0)
-	        THEN
-		        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Values for playtime, metacritic_rating, or user_rating
+                THEN
+                        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Values for playtime, metacritic_rating, or user_rating
                 outside accepted values!';
-	        END IF;
+                END IF;
         END
         """
         cursor_object.execute(trigger)
@@ -1047,10 +1047,10 @@ def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
     try:
 
         updateStatement = "UPDATE game g " \
-        "SET g.title = '" + gamtitl.replace("'", "\\'") + "', g.playtime = " + str(playtime) + ", g.ESRB_rating = '" \
-        + str(esrbrate) + "', g.metacritic_rating = " + str(metacritrate) + ", g.user_rating = " + str(userrate) \
-        + ", g.first_release_date = '" + str(reldate) + \
-        "' WHERE g.game_id = '" + str(gameid) + "'"
+                          "SET g.title = '" + gamtitl.replace("'", "\\'") + "', g.playtime = " + str(playtime) + ", g.ESRB_rating = '" \
+                          + str(esrbrate) + "', g.metacritic_rating = " + str(metacritrate) + ", g.user_rating = " + str(userrate) \
+                          + ", g.first_release_date = '" + str(reldate) + \
+                          "' WHERE g.game_id = '" + str(gameid) + "'"
 
         cursor_object.execute(updateStatement)
         tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
