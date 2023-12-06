@@ -218,37 +218,37 @@ class SearchResultsPage:
         self.HorizontalScroll = Scrollbar(self.window, orient='horizontal')
         self.VerticalScroll = Scrollbar(self.window)
 
-        self.ResultsBox = Listbox(self.window,
-                                  font="Helvetica 14",
-                                  height=20,
-                                  selectmode=MULTIPLE,
-                                  width=100,
-                                  xscrollcommand=self.HorizontalScroll.set,
-                                  yscrollcommand=self.VerticalScroll.set)
+        self.ResultsBox = ttk.Treeview(self.window,
+                                        show='headings',
+                                        xscrollcommand=self.HorizontalScroll.set,
+                                        yscrollcommand=self.VerticalScroll.set)
 
         self.HorizontalScroll.config(command=self.ResultsBox.xview())
         self.VerticalScroll.config(command=self.ResultsBox.yview())
 
-        self.ResultsBox.insert(1, ['Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
-                                   'User Rating', 'Developer'])
+        self.ResultsBox['columns'] = ('Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
+                                   'User Rating', 'Developer')
 
-        i = 2
+        for col in self.ResultsBox['columns'] :
+            self.ResultsBox.heading(col, text=col)
+            self.ResultsBox.column(col, width=120, minwidth=120, anchor="w")
+
         for item in results:
-            self.ResultsBox.insert(i, item)
-            i += 1
+            self.ResultsBox.insert('', 'end', values=item)
 
         self.HorizontalScroll.pack(side=BOTTOM, fill=X)
         self.VerticalScroll.pack(side=RIGHT, fill=Y)
         self.ResultsBox.pack()
 
         self.Instructions = Label(self.window,
-                                  text="Select all records you want to store in your wishlist.",
+                                  text="Select all records you want to store in your wishlist. (Control+Click for "
+                                       "multiple selections)",
                                   font="Helvetica 16").pack()
 
         self.WishlistButton = Button(self.window,
                                      text="Add to wishlist",
                                      font="Helvetica 10 bold",
-                                     command=lambda: AddToWishlist(self, self.ResultsBox.curselection()),
+                                     command=lambda: AddToWishlist(self, self.ResultsBox.selection()),
                                      width=20,
                                      height=2).pack()
 
@@ -267,37 +267,38 @@ class WishlistPage:
         self.HorizontalScroll = Scrollbar(self.window, orient='horizontal')
         self.VerticalScroll = Scrollbar(self.window)
 
-        self.WishlistBox = Listbox(self.window,
-                                   font="Helvetica 14",
-                                   height=20,
-                                   selectmode=MULTIPLE,
-                                   width=100,
-                                   xscrollcommand=self.HorizontalScroll.set,
-                                   yscrollcommand=self.VerticalScroll.set)
+        self.WishlistBox = ttk.Treeview(self.window,
+                                        show='headings',
+                                        xscrollcommand=self.HorizontalScroll.set,
+                                        yscrollcommand=self.VerticalScroll.set)
 
         self.HorizontalScroll.config(command=self.WishlistBox.xview())
         self.VerticalScroll.config(command=self.WishlistBox.yview())
 
-        self.WishlistBox.insert(1, ['Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
-                                    'User Rating', 'Developer'])
+        self.WishlistBox['columns'] = (
+        'Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
+        'User Rating', 'Developer')
 
-        i = 2
+        for col in self.WishlistBox['columns']:
+            self.WishlistBox.heading(col, text=col)
+            self.WishlistBox.column(col, width=120, minwidth=120, anchor="w")
+
         for item in results:
-            self.WishlistBox.insert(i, item)
-            i += 1
+            self.WishlistBox.insert('', 'end', values=item)
 
         self.HorizontalScroll.pack(side=BOTTOM, fill=X)
         self.VerticalScroll.pack(side=RIGHT, fill=Y)
         self.WishlistBox.pack()
 
         self.Instructions = Label(self.window,
-                                  text="Select all records you want remove from your wishlist.",
+                                  text="Select all records you want remove from your wishlist. (Control+Click for "
+                                       "multiple selections)",
                                   font="Helvetica 16").pack()
 
         self.WishlistButton = Button(self.window,
                                      text="Remove from wishlist",
                                      font="Helvetica 10 bold",
-                                     command=lambda: RemoveFromWishlist(self, results, self.WishlistBox.curselection()),
+                                     command=lambda: RemoveFromWishlist(self, results, self.WishlistBox.selection()),
                                      width=20,
                                      height=2).pack()
 
@@ -521,24 +522,25 @@ class SearchResultsUpdatePage:
         self.HorizontalScroll = Scrollbar(self.window, orient='horizontal')
         self.VerticalScroll = Scrollbar(self.window)
 
-        self.ResultsBox = Listbox(self.window,
-                                  font="Helvetica 14",
-                                  height=20,
-                                  selectmode=SINGLE,
-                                  width=100,
-                                  xscrollcommand=self.HorizontalScroll.set,
-                                  yscrollcommand=self.VerticalScroll.set)
+        self.ResultsBox = ttk.Treeview(self.window,
+                                       show='headings',
+                                       selectmode='browse',
+                                       xscrollcommand=self.HorizontalScroll.set,
+                                       yscrollcommand=self.VerticalScroll.set)
 
         self.HorizontalScroll.config(command=self.ResultsBox.xview())
         self.VerticalScroll.config(command=self.ResultsBox.yview())
 
-        self.ResultsBox.insert(1, ['Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
-                                   'User Rating', 'Developer'])
+        self.ResultsBox['columns'] = (
+        'Game ID', 'Title', 'Playtime', 'Release Date', 'ESRB Rating', 'Metacritic Rating',
+        'User Rating', 'Developer')
 
-        i = 2
+        for col in self.ResultsBox['columns']:
+            self.ResultsBox.heading(col, text=col)
+            self.ResultsBox.column(col, width=120, minwidth=120, anchor="w")
+
         for item in results:
-            self.ResultsBox.insert(i, item)
-            i += 1
+            self.ResultsBox.insert('', 'end', values=item)
 
         self.HorizontalScroll.pack(side=BOTTOM, fill=X)
         self.VerticalScroll.pack(side=RIGHT, fill=Y)
@@ -548,10 +550,10 @@ class SearchResultsUpdatePage:
                                   text="Select the record you want to update.",
                                   font="Helvetica 16").pack()
 
-        self.WishlistButton = Button(self.window,
+        self.SelectButton = Button(self.window,
                                      text="Select record",
                                      font="Helvetica 10 bold",
-                                     command=lambda: GrabUpdateRecord(self, self.ResultsBox.curselection()),
+                                     command=lambda: GrabUpdateRecord(self, self.ResultsBox.selection()),
                                      width=20,
                                      height=2).pack()
 
@@ -585,7 +587,7 @@ class UpdatePage:
         self.InputText6 = Entry(self.Window,
                                 font="Helvetica 14",
                                 )
-        self.InputText6.insert(0, record[1])
+        self.InputText6.insert(0, record['values'][1])
 
         self.InputText6.grid(row=5, column=1, padx=2, pady=2)
 
@@ -598,7 +600,7 @@ class UpdatePage:
         # typing the input
         self.InputText7 = Entry(self.Window,
                                 font="Helvetica 14")
-        self.InputText7.insert(0, record[2])
+        self.InputText7.insert(0, record['values'][2])
 
         self.InputText7.grid(row=5, column=3, padx=2, pady=2)
 
@@ -612,7 +614,7 @@ class UpdatePage:
         self.InputText8 = Entry(self.Window,
                                 font="Helvetica 14")
 
-        self.InputText8.insert(0, record[4])
+        self.InputText8.insert(0, record['values'][4])
         self.InputText8.grid(row=6, column=1, padx=2, pady=2)
 
         # create a Label
@@ -623,7 +625,7 @@ class UpdatePage:
         self.MetaRate = Entry(self.Window,
                               font="Helvetica 14")
 
-        self.MetaRate.insert(0, record[5])
+        self.MetaRate.insert(0, record['values'][5])
         self.MetaRate.grid(row=7, column=1, padx=2, pady=2)
 
         # create a Label
@@ -634,7 +636,7 @@ class UpdatePage:
         self.UserRate = Entry(self.Window,
                               font="Helvetica 14")
 
-        self.UserRate.insert(0, record[6])
+        self.UserRate.insert(0, record['values'][6])
         self.UserRate.grid(row=8, column=1, padx=2, pady=2)
 
         # create a Label
@@ -647,7 +649,8 @@ class UpdatePage:
         self.InputText11 = Entry(self.Window,
                                  font="Helvetica 14")
         self.InputText11.grid(row=9, column=1, padx=2, pady=2)
-        self.InputText11.insert(0, record[3])
+        self.InputText11.insert(0, record['values'][3])
+
         # create a Search Button along with action
         self.go = Button(self.Window,
                          text="Update Record (Transaction)",
@@ -656,7 +659,7 @@ class UpdatePage:
                                                       self.InputText6.get(), self.InputText7.get(),
                                                       self.InputText8.get(),
                                                       self.MetaRate.get(), self.UserRate.get(),
-                                                      self.InputText11.get(), record[0]))
+                                                      self.InputText11.get(), record['values'][0]))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -668,7 +671,7 @@ class UpdatePage:
                                                                     self.InputText6.get(), self.InputText7.get(),
                                                                     self.InputText8.get(),
                                                                     self.MetaRate.get(), self.UserRate.get(),
-                                                                    self.InputText11.get(), record[0]))
+                                                                    self.InputText11.get(), record['values'][0]))
 
         self.goTrigger.grid(row=11, column=0, padx=2, pady=2)
 
@@ -852,6 +855,9 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
 
 
 def AddToWishlist(self, records):
+
+    print(self.ResultsBox.item(records[0]))
+
     # Open wishlist JSON if exists otherwise start fresh and dump to directory
     try:
         with open('wishlist.json', 'r') as file:
@@ -860,7 +866,7 @@ def AddToWishlist(self, records):
         writeDict = {'stored': []}
 
     for record in records:
-        writeDict['stored'].append(self.ResultsBox.get(record)[0])
+        writeDict['stored'].append(self.ResultsBox.item(record)['values'][0])
 
     json.dump(writeDict, open("wishlist.json", "w"))
 
@@ -908,25 +914,26 @@ def StartWishlist():
 
 
 def RemoveFromWishlist(self, totalrecords, removalrecords):
+
     recordsToBeRemoved = []
     recordsToBeKept = []
     writeDict = {}
 
     for record in removalrecords:
-        recordsToBeRemoved.append(self.WishlistBox.get(record)[0])
+        recordsToBeRemoved.append(str(self.WishlistBox.item(record)['values'][0]))
     for record in totalrecords:
         if record[0] not in recordsToBeRemoved:
             recordsToBeKept.append(record[0])
 
     writeDict['stored'] = recordsToBeKept
-    print(writeDict)
     json.dump(writeDict, open("wishlist.json", "w"))
 
     self.window.destroy()
 
 
 def GrabUpdateRecord(self, record):
-    recordToUpdate = self.ResultsBox.get(record)
+
+    recordToUpdate = self.ResultsBox.item(record)
     self.window.destroy()
     UpdatePage(recordToUpdate)
 
@@ -940,8 +947,8 @@ def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
     if metacritrate == 'None':
         metacritrate = 'null'
 
-    updateStatement = "call TransactionUpdate('" + gamtitl.replace("'", "\\'") + "', " + str(playtime) + ", '" + esrbrate + "', " +\
-                      str(metacritrate) + ", " + str(userrate) + ", '" + reldate + "', " + gameid + ")"
+    updateStatement = "call TransactionUpdate('" + gamtitl.replace("'", "\\'") + "', " + str(playtime) + ", '" + str(esrbrate) + "', " +\
+                      str(metacritrate) + ", " + str(userrate) + ", '" + str(reldate) + "', " + str(gameid) + ")"
     cursor_object.execute(updateStatement)
 
     # Logic in python to see if update should have passed or failed
@@ -1041,8 +1048,8 @@ def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
 
         updateStatement = "UPDATE game g " \
         "SET g.title = '" + gamtitl.replace("'", "\\'") + "', g.playtime = " + str(playtime) + ", g.ESRB_rating = '" \
-        + esrbrate + "', g.metacritic_rating = " + str(metacritrate) + ", g.user_rating = " + str(userrate) \
-        + ", g.first_release_date = '" + reldate + \
+        + str(esrbrate) + "', g.metacritic_rating = " + str(metacritrate) + ", g.user_rating = " + str(userrate) \
+        + ", g.first_release_date = '" + str(reldate) + \
         "' WHERE g.game_id = '" + str(gameid) + "'"
 
         cursor_object.execute(updateStatement)
