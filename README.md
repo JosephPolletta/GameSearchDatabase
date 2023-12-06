@@ -13,7 +13,7 @@ To install: open your command prompt and run these two pip installers
 ## Generating the database
 To create and populate the games database you’ll need to have MySQL installed, an environment to run Python code, and the following files from this GitHub repo (located in the "Setup" folder):
 
-* DBConnectorConfig.json
+* connectorConfig.json
 * create_games_db.py
 * create_game_tables.py
 * insert_into_tables.py
@@ -25,7 +25,7 @@ Additionally, you'll need to download and extract the gamedata folder and house 
 The data file can be downloaded here: https://drive.google.com/file/d/1ItOqp7xj-HBor4Wtk8_qKGaCgptWfaix/view
 
 ### Creating and populating the database:
-Once all of the prerequisites are met, start by **opening the DBConnectorConfig.json and editing the three values mapped to "host", "user", and "passwd"** to reflect how your MySQL server is configured (typically “host” can stay as “localhost” and "user" can stay as "root" however the password will need to be changed to how your MySQL login was configured).
+Once all of the prerequisites are met, start by **opening the connectorConfig.json and editing the three values mapped to "host", "user", and "passwd"** to reflect how your MySQL server is configured (typically “host” can stay as “localhost” and "user" can stay as "root" however the password will need to be changed to how your MySQL login was configured).
 
 Next, **run the create_games_db.py file**, which will create the empty games database.
 
@@ -36,7 +36,7 @@ Finally, **open the insert_into_tables.py file and alter the string “path_to_g
 ## Setting up/using the app
 
 ### App Setup
-To setup the app, you'll need the **gui.py file** and the **DBConnectorConfig.json**. Make sure these two files are housed in the same location. 
+To setup the app, you'll need the **gui.py file** and the **connectorConfig.json**. Make sure these two files are housed in the same location. 
 
 We recommend creating a new folder titled 'GamesDB' or something similar to house these two files as a wishlist.json file will also be getting created in this folder
 
