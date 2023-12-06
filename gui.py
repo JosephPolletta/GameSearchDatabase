@@ -13,8 +13,11 @@ import json
 import mysql.connector
 from tkinter import ttk
 
+#~~~~~~~~~~~~~#
+# GUI Classes #
+#~~~~~~~~~~~~~#
 
-# GUI Classes
+# The page after hitting the search button. Displays a page where the user can input fields to search on and then search for a game
 class SearchPage:
 
     # Constructor
@@ -213,7 +216,7 @@ class SearchPage:
 
         self.Window.mainloop()
 
-
+# The page displaying results of a normal search
 class SearchResultsPage:
 
     # Constructor
@@ -262,7 +265,7 @@ class SearchResultsPage:
 
         self.window.mainloop()
 
-
+# The page that will display all of the games in a user's Wishlist
 class WishlistPage:
 
     # Constructor
@@ -319,7 +322,7 @@ class WishlistPage:
 
         self.window.mainloop()
 
-
+# The page for the user to search for a game to update
 class UpdateSearchPage:
 
     # Constructor
@@ -517,7 +520,7 @@ class UpdateSearchPage:
 
         self.Window.mainloop()
 
-
+# The page you will see after querying for a game to update
 class SearchResultsUpdatePage:
 
     # Constructor
@@ -567,7 +570,7 @@ class SearchResultsUpdatePage:
 
         self.window.mainloop()
 
-
+# The page that you will be seeing when updating a record
 class UpdatePage:
 
     # Constructor
@@ -685,7 +688,7 @@ class UpdatePage:
 
         self.Window.mainloop()
 
-
+# The first page the user will see. Allows the user to Search, go to their Wishlist, or search for a record to Update
 class HomePage:
 
     # Constructor
@@ -706,8 +709,12 @@ class HomePage:
         self.window.mainloop()
 
 
-# Functions for buttons
 
+#~~~~~~~~~~~~~~~~~~~~~~~#
+# Functions for buttons #
+#~~~~~~~~~~~~~~~~~~~~~~~#
+
+# Searches the database using SQL connection based on the user's input
 def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
            reldate, metacompare, usercompare, page):
     # Initial statement will join all tables together and return only the useful info
@@ -864,7 +871,7 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
     else:
         SearchResultsUpdatePage(games)
 
-
+# Adds the selected record(s) to the user's wishlist
 def AddToWishlist(self, records):
 
     print(self.ResultsBox.item(records[0]))
@@ -883,7 +890,7 @@ def AddToWishlist(self, records):
 
     self.window.destroy()
 
-
+# Will load the wishlist by querying the database using the game_id's in the wishlist
 def StartWishlist():
     # We load the JSON here and then grab all keys (game_ids) and then search them in database and output to form for listbox
     try:
@@ -923,7 +930,7 @@ def StartWishlist():
 
     WishlistPage(games)
 
-
+# Removes record(s) from the wishlist
 def RemoveFromWishlist(self, totalrecords, removalrecords):
 
     recordsToBeRemoved = []
@@ -941,14 +948,14 @@ def RemoveFromWishlist(self, totalrecords, removalrecords):
 
     self.window.destroy()
 
-
+# Helper to get the record that the user will be updating
 def GrabUpdateRecord(self, record):
 
     recordToUpdate = self.ResultsBox.item(record)
     self.window.destroy()
     UpdatePage(recordToUpdate)
 
-
+# Performs the updating of a record in the database using the transaction procedure
 def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
                  userrate, reldate, gameid):
 
@@ -988,7 +995,7 @@ def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
         tkinter.messagebox.showinfo('Update Status', "Update Failed!")
     self.Window.destroy()
 
-
+# Creates the update transaction procedure
 def createTransactionProcedure():
 
     procedure = """
@@ -1023,7 +1030,7 @@ def createTransactionProcedure():
     except Exception as E:
         print(E)
 
-
+# Function to create the update trigger
 def createTrigger():
     # Creates the trigger in the user's database
     try:
@@ -1047,7 +1054,7 @@ def createTrigger():
         print(E)
     return
 
-
+# Performs the updating of a record in the database using a trigger
 def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
                         metacritrate, userrate, reldate, gameid):
 
@@ -1092,5 +1099,5 @@ createTransactionProcedure()
 # Creating the update trigger
 createTrigger()
 
-# create a GUI class object
+# Creating a GUI class object
 g = HomePage()
