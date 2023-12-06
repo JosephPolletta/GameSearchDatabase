@@ -13,9 +13,8 @@ import json
 import mysql.connector
 from tkinter import ttk
 
-#~~~~~~~~~~~~~#
 # GUI Classes #
-#~~~~~~~~~~~~~#
+
 
 # The page after hitting the search button. Displays a page where the user can input fields to search on and then search for a game
 class SearchPage:
@@ -38,19 +37,19 @@ class SearchPage:
 
         # create a Label
         self.devLabel = Label(self.Window,
-                                 text="Developer Name(s): ",
-                                 font="Helvetica 12").grid(row=1, column=0, padx=2, pady=2)
+                              text="Developer Name(s): ",
+                              font="Helvetica 12").grid(row=1, column=0, padx=2, pady=2)
 
         # create a entry box for typing the input
         self.devInput = Entry(self.Window,
-                                font="Helvetica 14")
+                              font="Helvetica 14")
 
         self.devInput.grid(row=1, column=1, padx=2, pady=2)
 
         # create a Label
         self.genreLabel = Label(self.Window,
-                                 text="Genre Name(s): ",
-                                 font="Helvetica 12").grid(row=1, column=2, padx=2, pady=2)
+                                text="Genre Name(s): ",
+                                font="Helvetica 12").grid(row=1, column=2, padx=2, pady=2)
 
         # create a entry box for typing the input
         self.genreInput = Entry(self.Window,
@@ -60,8 +59,8 @@ class SearchPage:
 
         # create a Label
         self.storeLabel = Label(self.Window,
-                                 text="Store Name(s): ",
-                                 font="Helvetica 12").grid(row=1, column=4, padx=2, pady=2)
+                                text="Store Name(s): ",
+                                font="Helvetica 12").grid(row=1, column=4, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
@@ -72,25 +71,25 @@ class SearchPage:
 
         # create a Label
         self.platformLabel = Label(self.Window,
-                                 text="Platform Name(s): ",
-                                 font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
+                                   text="Platform Name(s): ",
+                                   font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.platformInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                   font="Helvetica 14")
 
         self.platformInput.grid(row=2, column=1, padx=2, pady=2)
 
         # create a Label
         self.parentplatformLabel = Label(self.Window,
-                                 text="Parent Platform(s): ",
-                                 font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
+                                         text="Parent Platform(s): ",
+                                         font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.parentplatformInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                         font="Helvetica 14")
 
         self.parentplatformInput.grid(row=2, column=3, padx=2, pady=2)
 
@@ -104,37 +103,37 @@ class SearchPage:
 
         # create a Label
         self.gametitleLabel = Label(self.Window,
-                                 text="Game Title: ",
-                                 font="Helvetica 12").grid(row=4, column=0, padx=2, pady=2)
+                                    text="Game Title: ",
+                                    font="Helvetica 12").grid(row=4, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.gametitleInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                    font="Helvetica 14")
 
         self.gametitleInput.grid(row=4, column=1, padx=2, pady=2)
 
         # create a Label
         self.playtimeLabel = Label(self.Window,
-                                 text="Playtime: ",
-                                 font="Helvetica 12").grid(row=4, column=2, padx=2, pady=2)
+                                   text="Playtime: ",
+                                   font="Helvetica 12").grid(row=4, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.playtimeInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                   font="Helvetica 14")
 
         self.playtimeInput.grid(row=4, column=3, padx=2, pady=2)
 
         # create a Label
         self.ESRBLabel = Label(self.Window,
-                                 text="ESRB Rating: ",
-                                 font="Helvetica 12").grid(row=4, column=4, padx=2, pady=2)
+                               text="ESRB Rating: ",
+                               font="Helvetica 12").grid(row=4, column=4, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.ESRBRatingInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                     font="Helvetica 14")
 
         self.ESRBRatingInput.grid(row=4, column=5, padx=2, pady=2)
 
@@ -142,8 +141,8 @@ class SearchPage:
 
         # create a Label
         self.metacriticLabel = Label(self.Window,
-                                 text="Metacritic Rating: ",
-                                 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
+                                     text="Metacritic Rating: ",
+                                     font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
         # create a combobox for selecting <= or >=
         n = tkinter.StringVar()
@@ -161,14 +160,14 @@ class SearchPage:
         # create a entry box for
         # typing the input
         self.metacriticInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                     font="Helvetica 14")
 
         self.metacriticInput.grid(row=5, column=2, padx=2, pady=2)
 
         # create a Label
         self.userrateLabel = Label(self.Window,
-                                  text="User Rating: ",
-                                  font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+                                   text="User Rating: ",
+                                   font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
 
         # create a combobox for selecting <= or >=
         n = tkinter.StringVar()
@@ -186,19 +185,19 @@ class SearchPage:
         # create a entry box for
         # typing the input
         self.userrateInput = Entry(self.Window,
-                                 font="Helvetica 14")
+                                   font="Helvetica 14")
 
         self.userrateInput.grid(row=6, column=2, padx=2, pady=2)
 
         # create a Label
         self.releasedateLabel = Label(self.Window,
-                                  text="Release Date: ",
-                                  font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
+                                      text="Release Date: ",
+                                      font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.releasedateInput = Entry(self.Window,
-                                 font="Helvetica 14")
+                                      font="Helvetica 14")
 
         self.releasedateInput.grid(row=7, column=1, padx=2, pady=2)
 
@@ -215,6 +214,7 @@ class SearchPage:
         self.go.grid(row=8, column=0, padx=2, pady=2)
 
         self.Window.mainloop()
+
 
 # The page displaying results of a normal search
 class SearchResultsPage:
@@ -264,6 +264,7 @@ class SearchResultsPage:
                                      height=2).pack()
 
         self.window.mainloop()
+
 
 # The page that will display all of the games in a user's Wishlist
 class WishlistPage:
@@ -322,6 +323,7 @@ class WishlistPage:
 
         self.window.mainloop()
 
+
 # The page for the user to search for a game to update
 class UpdateSearchPage:
 
@@ -343,19 +345,19 @@ class UpdateSearchPage:
 
         # create a Label
         self.devLabel = Label(self.Window,
-                                 text="Developer Name(s): ",
-                                 font="Helvetica 12").grid(row=1, column=0, padx=2, pady=2)
+                              text="Developer Name(s): ",
+                              font="Helvetica 12").grid(row=1, column=0, padx=2, pady=2)
 
         # create a entry box for typing the input
         self.devInput = Entry(self.Window,
-                                font="Helvetica 14")
+                              font="Helvetica 14")
 
         self.devInput.grid(row=1, column=1, padx=2, pady=2)
 
         # create a Label
         self.genreLabel = Label(self.Window,
-                                 text="Genre Name(s): ",
-                                 font="Helvetica 12").grid(row=1, column=2, padx=2, pady=2)
+                                text="Genre Name(s): ",
+                                font="Helvetica 12").grid(row=1, column=2, padx=2, pady=2)
 
         # create a entry box for typing the input
         self.genreInput = Entry(self.Window,
@@ -365,8 +367,8 @@ class UpdateSearchPage:
 
         # create a Label
         self.storeLabel = Label(self.Window,
-                                 text="Store Name(s): ",
-                                 font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
+                                text="Store Name(s): ",
+                                font="Helvetica 12").grid(row=2, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
@@ -377,25 +379,25 @@ class UpdateSearchPage:
 
         # create a Label
         self.platformLabel = Label(self.Window,
-                                 text="Platform Name(s): ",
-                                 font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
+                                   text="Platform Name(s): ",
+                                   font="Helvetica 12").grid(row=2, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.platformInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                   font="Helvetica 14")
 
         self.platformInput.grid(row=2, column=3, padx=2, pady=2)
 
         # create a Label
         self.parentplatformLabel = Label(self.Window,
-                                 text="Parent Platform(s): ",
-                                 font="Helvetica 12").grid(row=3, column=0, padx=2, pady=2)
+                                         text="Parent Platform(s): ",
+                                         font="Helvetica 12").grid(row=3, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.parentplatformInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                         font="Helvetica 14")
 
         self.parentplatformInput.grid(row=3, column=1, padx=2, pady=2)
 
@@ -409,44 +411,44 @@ class UpdateSearchPage:
 
         # create a Label
         self.gametitleLabel = Label(self.Window,
-                                 text="Game Title: ",
-                                 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
+                                    text="Game Title: ",
+                                    font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.gametitleInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                    font="Helvetica 14")
 
         self.gametitleInput.grid(row=5, column=1, padx=2, pady=2)
 
         # create a Label
         self.playtimeLabel = Label(self.Window,
-                                 text="Playtime: ",
-                                 font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
+                                   text="Playtime: ",
+                                   font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.playtimeInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                   font="Helvetica 14")
 
         self.playtimeInput.grid(row=5, column=3, padx=2, pady=2)
 
         # create a Label
         self.ESRBLabel = Label(self.Window,
-                                 text="ESRB Rating: ",
-                                 font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+                               text="ESRB Rating: ",
+                               font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.ESRBRatingInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                     font="Helvetica 14")
 
         self.ESRBRatingInput.grid(row=6, column=1, padx=2, pady=2)
 
         # create a Label
         self.metacriticLabel = Label(self.Window,
-                                 text="Metacritic Rating: ",
-                                 font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
+                                     text="Metacritic Rating: ",
+                                     font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
         # create a combobox for selecting <= or >=
         n = tkinter.StringVar()
@@ -464,14 +466,14 @@ class UpdateSearchPage:
         # create a entry box for
         # typing the input
         self.metacriticInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                     font="Helvetica 14")
 
         self.metacriticInput.grid(row=7, column=2, padx=2, pady=2)
 
         # create a Label
         self.userrateLabel = Label(self.Window,
-                                  text="User Rating: ",
-                                  font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
+                                   text="User Rating: ",
+                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
         # create a combobox for selecting <= or >=
         n = tkinter.StringVar()
@@ -489,19 +491,19 @@ class UpdateSearchPage:
         # create a entry box for
         # typing the input
         self.userrateInput = Entry(self.Window,
-                                 font="Helvetica 14")
+                                   font="Helvetica 14")
 
         self.userrateInput.grid(row=8, column=2, padx=2, pady=2)
 
         # create a Label
         self.releasedateLabel = Label(self.Window,
-                                  text="Release Date: ",
-                                  font="Helvetica 12").grid(row=9, column=0, padx=2, pady=2)
+                                      text="Release Date: ",
+                                      font="Helvetica 12").grid(row=9, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.releasedateInput = Entry(self.Window,
-                                 font="Helvetica 14")
+                                      font="Helvetica 14")
         self.releasedateInput.grid(row=9, column=1, padx=2, pady=2)
 
         # create a Search Button along with action
@@ -519,6 +521,7 @@ class UpdateSearchPage:
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
         self.Window.mainloop()
+
 
 # The page you will see after querying for a game to update
 class SearchResultsUpdatePage:
@@ -570,6 +573,7 @@ class SearchResultsUpdatePage:
 
         self.window.mainloop()
 
+
 # The page that you will be seeing when updating a record
 class UpdatePage:
 
@@ -590,48 +594,48 @@ class UpdatePage:
 
         # create a Label
         self.gametitleLabel = Label(self.Window,
-                                 text="Game Title: ",
-                                 font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
+                                    text="Game Title: ",
+                                    font="Helvetica 12").grid(row=5, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.gametitleInput = Entry(self.Window,
-                                font="Helvetica 14",
-                                )
+                                    font="Helvetica 14",
+                                    )
         self.gametitleInput.insert(0, record['values'][1])
 
         self.gametitleInput.grid(row=5, column=1, padx=2, pady=2)
 
         # create a Label
         self.playtimeLabel = Label(self.Window,
-                                 text="Playtime: ",
-                                 font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
+                                   text="Playtime: ",
+                                   font="Helvetica 12").grid(row=5, column=2, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.playtimeInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                   font="Helvetica 14")
         self.playtimeInput.insert(0, record['values'][2])
 
         self.playtimeInput.grid(row=5, column=3, padx=2, pady=2)
 
         # create a Label
         self.ESRBLabel = Label(self.Window,
-                                 text="ESRB Rating: ",
-                                 font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
+                               text="ESRB Rating: ",
+                               font="Helvetica 12").grid(row=6, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.ESRBRatingInput = Entry(self.Window,
-                                font="Helvetica 14")
+                                     font="Helvetica 14")
 
         self.ESRBRatingInput.insert(0, record['values'][4])
         self.ESRBRatingInput.grid(row=6, column=1, padx=2, pady=2)
 
         # create a Label
         self.metacriticLabel = Label(self.Window,
-                                 text="Metacritic Rating: ",
-                                 font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
+                                     text="Metacritic Rating: ",
+                                     font="Helvetica 12").grid(row=7, column=0, padx=2, pady=2)
 
         self.MetaRate = Entry(self.Window,
                               font="Helvetica 14")
@@ -641,8 +645,8 @@ class UpdatePage:
 
         # create a Label
         self.userrateLabel = Label(self.Window,
-                                  text="User Rating (input as '#.#'):",
-                                  font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
+                                   text="User Rating (input as '#.#'):",
+                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
         self.UserRate = Entry(self.Window,
                               font="Helvetica 14")
@@ -652,13 +656,13 @@ class UpdatePage:
 
         # create a Label
         self.releasedateLabel = Label(self.Window,
-                                  text="Release Date: ",
-                                  font="Helvetica 12").grid(row=9, column=0, padx=2, pady=2)
+                                      text="Release Date: ",
+                                      font="Helvetica 12").grid(row=9, column=0, padx=2, pady=2)
 
         # create a entry box for
         # typing the input
         self.releasedateInput = Entry(self.Window,
-                                 font="Helvetica 14")
+                                      font="Helvetica 14")
         self.releasedateInput.grid(row=9, column=1, padx=2, pady=2)
         self.releasedateInput.insert(0, record['values'][3])
 
@@ -688,6 +692,7 @@ class UpdatePage:
 
         self.Window.mainloop()
 
+
 # The first page the user will see. Allows the user to Search, go to their Wishlist, or search for a record to Update
 class HomePage:
 
@@ -709,10 +714,8 @@ class HomePage:
         self.window.mainloop()
 
 
-
-#~~~~~~~~~~~~~~~~~~~~~~~#
 # Functions for buttons #
-#~~~~~~~~~~~~~~~~~~~~~~~#
+
 
 # Searches the database using SQL connection based on the user's input
 def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playtime, esrbrate, metacritrate, userrate,
@@ -871,6 +874,7 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
     else:
         SearchResultsUpdatePage(games)
 
+
 # Adds the selected record(s) to the user's wishlist
 def AddToWishlist(self, records):
 
@@ -889,6 +893,7 @@ def AddToWishlist(self, records):
     json.dump(writeDict, open("wishlist.json", "w"))
 
     self.window.destroy()
+
 
 # Will load the wishlist by querying the database using the game_id's in the wishlist
 def StartWishlist():
@@ -930,6 +935,7 @@ def StartWishlist():
 
     WishlistPage(games)
 
+
 # Removes record(s) from the wishlist
 def RemoveFromWishlist(self, totalrecords, removalrecords):
 
@@ -948,12 +954,14 @@ def RemoveFromWishlist(self, totalrecords, removalrecords):
 
     self.window.destroy()
 
+
 # Helper to get the record that the user will be updating
 def GrabUpdateRecord(self, record):
 
     recordToUpdate = self.ResultsBox.item(record)
     self.window.destroy()
     UpdatePage(recordToUpdate)
+
 
 # Performs the updating of a record in the database using the transaction procedure
 def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
@@ -995,6 +1003,7 @@ def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
         tkinter.messagebox.showinfo('Update Status', "Update Failed!")
     self.Window.destroy()
 
+
 # Creates the update transaction procedure
 def createTransactionProcedure():
 
@@ -1030,6 +1039,7 @@ def createTransactionProcedure():
     except Exception as E:
         print(E)
 
+
 # Function to create the update trigger
 def createTrigger():
     # Creates the trigger in the user's database
@@ -1053,6 +1063,7 @@ def createTrigger():
     except Exception as E:
         print(E)
     return
+
 
 # Performs the updating of a record in the database using a trigger
 def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
