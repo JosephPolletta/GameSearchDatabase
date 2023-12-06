@@ -1,3 +1,11 @@
+"""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+GUI to Search Your Videogame Database:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
+
 # Import all the required modules
 import tkinter.messagebox
 from tkinter import *
@@ -630,7 +638,7 @@ class UpdatePage:
 
         # create a Label
         self.userrateLabel = Label(self.Window,
-                                  text="User Rating: (%.%)",
+                                  text="User Rating (input as '#.#'):",
                                   font="Helvetica 12").grid(row=8, column=0, padx=2, pady=2)
 
         self.UserRate = Entry(self.Window,
