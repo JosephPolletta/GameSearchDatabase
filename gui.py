@@ -2,7 +2,6 @@
 import tkinter.messagebox
 from tkinter import *
 import json
-import os
 import mysql.connector
 from tkinter import ttk
 
@@ -141,7 +140,6 @@ class SearchPage:
                                       textvariable=n,
                                       font="Helvetica 14",
                                       width=2)
-
 
         self.MetaCombo['values'] = ('>=',
                                     '<=')
@@ -499,12 +497,12 @@ class UpdateSearchPage:
                          text="Search for game to update",
                          font="Helvetica 20 bold",
                          command=lambda: Search(self, self.InputText1.get(), self.InputText2.get(),
-                                                      self.InputText3.get(), self.InputText4.get(),
-                                                      self.InputText5.get(),
-                                                      self.InputText6.get(), self.InputText7.get(),
-                                                      self.InputText8.get(),
-                                                      self.InputText9.get(), self.InputText10.get(),
-                                                      self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get(), 1))
+                                                self.InputText3.get(), self.InputText4.get(),
+                                                self.InputText5.get(),
+                                                self.InputText6.get(), self.InputText7.get(),
+                                                self.InputText8.get(),
+                                                self.InputText9.get(), self.InputText10.get(),
+                                                self.InputText11.get(), self.MetaCombo.get(), self.UserCombo.get(), 1))
 
         self.go.grid(row=10, column=0, padx=2, pady=2)
 
@@ -624,7 +622,7 @@ class UpdatePage:
 
         self.MetaRate = Entry(self.Window,
                               font="Helvetica 14")
-        
+
         self.MetaRate.insert(0, record[5])
         self.MetaRate.grid(row=7, column=1, padx=2, pady=2)
 
@@ -635,7 +633,7 @@ class UpdatePage:
 
         self.UserRate = Entry(self.Window,
                               font="Helvetica 14")
-        
+
         self.UserRate.insert(0, record[6])
         self.UserRate.grid(row=8, column=1, padx=2, pady=2)
 
@@ -703,20 +701,20 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
            reldate, metacompare, usercompare, page):
     # For now the initial statement will join all tables together and return only the useful info
     statement = """
-				SELECT distinct 
-				g.game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating,
-				d.name as Developer
-				from game g join gamedeveloper gd on g.game_id = gd.game_id
-					join developer d on d.developer_id = gd.developer_id
-					join gamegenre gg on g.game_id = gg.game_id
-					join genre gen on gg.genre_id = gen.genre_id
-					join gameplatform gp on g.game_id = gp.game_id
-					join platform p on gp.platform_id = p.platform_id
-					join gameparentplatform gpp on g.game_id = gpp.game_id
-					join parentplatform pp on gpp.parentplatform_id = pp.parentplatform_id
-					join gamestore gs on g.game_id = gs.game_id
-					join store s on gs.store_id = s.store_id
-					WHERE """
+                                SELECT distinct
+                                g.game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating,
+                                d.name as Developer
+                                from game g join gamedeveloper gd on g.game_id = gd.game_id
+                                        join developer d on d.developer_id = gd.developer_id
+                                        join gamegenre gg on g.game_id = gg.game_id
+                                        join genre gen on gg.genre_id = gen.genre_id
+                                        join gameplatform gp on g.game_id = gp.game_id
+                                        join platform p on gp.platform_id = p.platform_id
+                                        join gameparentplatform gpp on g.game_id = gpp.game_id
+                                        join parentplatform pp on gpp.parentplatform_id = pp.parentplatform_id
+                                        join gamestore gs on g.game_id = gs.game_id
+                                        join store s on gs.store_id = s.store_id
+                                        WHERE """
     # Variable to tell if the AND needs to be added before the string
     isFirstInput = 0
 
@@ -848,16 +846,17 @@ def Search(self, devname, genname, stoname, platname, parentplat, gamtitl, playt
 
     self.Window.destroy()
     if page == 0:
-        g = SearchResultsPage(games)
+        SearchResultsPage(games)
     else:
-        g = SearchResultsUpdatePage(games)
+        SearchResultsUpdatePage(games)
+
 
 def AddToWishlist(self, records):
     # Open wishlist JSON if exists otherwise start fresh and dump to directory
     try:
         with open('wishlist.json', 'r') as file:
             writeDict = json.load(file)
-    except:
+    except Exception:
         writeDict = {'stored': []}
 
     for record in records:
@@ -874,25 +873,25 @@ def StartWishlist():
         with open('wishlist.json', 'r') as file:
             wishlist = json.load(file)
             listpassthrough = wishlist['stored']
-    except:
+    except Exception:
         listpassthrough = []
 
     if len(listpassthrough) != 0:
         statement = """
-					SELECT distinct 
-					g.game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating,
-					d.name as Developer
-					from game g join gamedeveloper gd on g.game_id = gd.game_id
-						join developer d on d.developer_id = gd.developer_id
-						join gamegenre gg on g.game_id = gg.game_id
-						join genre gen on gg.genre_id = gen.genre_id
-						join gameplatform gp on g.game_id = gp.game_id
-						join platform p on gp.platform_id = p.platform_id
-						join gameparentplatform gpp on g.game_id = gpp.game_id
-						join parentplatform pp on gpp.parentplatform_id = pp.parentplatform_id
-						join gamestore gs on g.game_id = gs.game_id
-						join store s on gs.store_id = s.store_id
-					WHERE """
+                                        SELECT distinct
+                                        g.game_id, title, playtime, first_release_date, ESRB_rating, metacritic_rating, user_rating,
+                                        d.name as Developer
+                                        from game g join gamedeveloper gd on g.game_id = gd.game_id
+                                                join developer d on d.developer_id = gd.developer_id
+                                                join gamegenre gg on g.game_id = gg.game_id
+                                                join genre gen on gg.genre_id = gen.genre_id
+                                                join gameplatform gp on g.game_id = gp.game_id
+                                                join platform p on gp.platform_id = p.platform_id
+                                                join gameparentplatform gpp on g.game_id = gpp.game_id
+                                                join parentplatform pp on gpp.parentplatform_id = pp.parentplatform_id
+                                                join gamestore gs on g.game_id = gs.game_id
+                                                join store s on gs.store_id = s.store_id
+                                        WHERE """
 
         for id in listpassthrough:
             statement += "g.game_id = '" + str(id) + "' OR "
@@ -905,7 +904,7 @@ def StartWishlist():
     else:
         games = []
 
-    g = WishlistPage(games)
+    WishlistPage(games)
 
 
 def RemoveFromWishlist(self, totalrecords, removalrecords):
@@ -929,7 +928,7 @@ def RemoveFromWishlist(self, totalrecords, removalrecords):
 def GrabUpdateRecord(self, record):
     recordToUpdate = self.ResultsBox.get(record)
     self.window.destroy()
-    g = UpdatePage(recordToUpdate)
+    UpdatePage(recordToUpdate)
 
 
 def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
@@ -941,8 +940,7 @@ def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
     if metacritrate == 'None':
         metacritrate = 'null'
 
-
-    updateStatement = "call TransactionUpdate('" + gamtitl + "', " + str(playtime) + ", '" + esrbrate + "', " +\
+    updateStatement = "call TransactionUpdate('" + gamtitl.replace("'", "\\'") + "', " + str(playtime) + ", '" + esrbrate + "', " +\
                       str(metacritrate) + ", " + str(userrate) + ", '" + reldate + "', " + gameid + ")"
     cursor_object.execute(updateStatement)
 
@@ -966,18 +964,18 @@ def UpdateRecord(self, gamtitl, playtime, esrbrate, metacritrate,
         elif userrate == '5.0':
             userbool = True
 
-    if (playtimebool & metacritbool == True & userbool == True):
+    if (playtimebool & metacritbool is True & userbool is True):
         tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
     else:
         tkinter.messagebox.showinfo('Update Status', "Update Failed!")
     self.Window.destroy()
 
+
 def createTransactionProcedure():
 
     procedure = """
-    Delimiter //
     CREATE PROCEDURE TransactionUpdate(
-	    new_title varchar(250),
+            new_title varchar(250),
         new_playtime int,
         new_ESRB varchar(45),
         new_metascore int,
@@ -986,46 +984,75 @@ def createTransactionProcedure():
         search_gameid varchar(10)
     )
     BEGIN
-	START TRANSACTION;
-		UPDATE game g
+        START TRANSACTION;
+                UPDATE game g
         SET g.title = new_title, g.playtime = new_playtime, g.ESRB_rating = new_ESRB, g.metacritic_rating = new_metascore,
-			g.user_rating = new_userscore, g.first_release_date = new_reldate
-		WHERE g.game_id = search_gameid;
-		IF (new_playtime >= 0 and ((new_metascore >=0 and new_metascore <= 100) or new_metascore is null)
+                        g.user_rating = new_userscore, g.first_release_date = new_reldate
+                WHERE g.game_id = search_gameid;
+                IF (new_playtime >= 0 and ((new_metascore >=0 and new_metascore <= 100) or new_metascore is null)
         and new_userscore >= 0.0 and new_userscore <= 5.0)
         THEN
-			COMMIT;
-		ELSE
-			ROLLBACK;
+                        COMMIT;
+                ELSE
+                        ROLLBACK;
         END IF;
-    END //
-    Delimiter ;
+    END
     """
 
     # If it fails then procedure already exists
     try:
         cursor_object.execute(procedure)
-    except:
-        donothing=1
-        
+    except Exception as E:
+        print(E)
+
+
 def createTrigger():
     # Creates the trigger in the user's database
     try:
+        trigger = """
+        CREATE TRIGGER checkColumnIntegrity
+        AFTER UPDATE ON game
+        FOR EACH ROW
+        BEGIN
+	        IF not (new.playtime >= 0 and ((new.metacritic_rating >=0 and new.metacritic_rating <= 100) or new.metacritic_rating is null)
+                and new.user_rating >= 0.0 and new.user_rating <= 5.0)
+	        THEN
+		        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Values for playtime, metacritic_rating, or user_rating
+                outside accepted values!';
+	        END IF;
+        END
         """
-        CREATE TRIGGER
-        """
+        cursor_object.execute(trigger)
+
     # Trigger already exists in user's database so do nothing
-    except:
-        donothing = 1
+    except Exception as E:
+        print(E)
     return
+
 
 def UpdateRecordTrigger(self, gamtitl, playtime, esrbrate,
                         metacritrate, userrate, reldate, gameid):
-    """
-    Does update and calls trigger
-    """
-    print("Working on it")
-    tkinter.messagebox.showinfo('Update Status', "As if I know")
+
+    # Translate metacritrate 'none' value into 'null' values for statement (only statement that will be null and numeric)
+    if metacritrate == 'None':
+        metacritrate = 'null'
+
+    try:
+
+        updateStatement = "UPDATE game g " \
+        "SET g.title = '" + gamtitl.replace("'", "\\'") + "', g.playtime = " + str(playtime) + ", g.ESRB_rating = '" \
+        + esrbrate + "', g.metacritic_rating = " + str(metacritrate) + ", g.user_rating = " + str(userrate) \
+        + ", g.first_release_date = '" + reldate + \
+        "' WHERE g.game_id = '" + str(gameid) + "'"
+
+        cursor_object.execute(updateStatement)
+        tkinter.messagebox.showinfo('Update Status', "Update Successful, nice!")
+
+    # Update failed due to trigger intercepting bad update
+    except Exception as E:
+        print(E)
+        tkinter.messagebox.showinfo('Update Status', "Update Failed!")
+
     self.Window.destroy()
 
 
